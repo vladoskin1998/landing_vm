@@ -12,7 +12,7 @@ const list = [
 
 const Reviews = () => {
   return (
-    <div className='reviews'>
+    <div className='reviews' id='Reviews'>
       <h4 className='route--name'>Reviews</h4>
       <h2>Happy Clients</h2>
       <div className='reviews__list'>

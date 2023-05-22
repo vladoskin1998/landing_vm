@@ -2,7 +2,7 @@ import '../../../style/main/about.scss'
 import { ABOUT_LIST as list } from '../../../utils/constants'
 const About = () => {
   return (
-    <div className="about">
+    <div className="about" id='About'>
       <div className="about__wrap wraper--content">
         <div className="about__images">
           <div className="about__images-row">

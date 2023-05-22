@@ -3,7 +3,7 @@ import '../../../style/main/footer.scss'
 import { Message } from '../../svg/Message'
 const Footer = () => {
   return (
-    <div className='footer'>
+    <div className='footer' id='Contacts'>
       <div className='wraper--content footer__wrap'>
         <div className='footer__buisness'>
           <h5 className='route--name'>Business Hours</h5>

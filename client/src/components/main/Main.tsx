@@ -5,10 +5,13 @@ import Property from './property/Property'
 import Reviews from './reviews/Reviews'
 import Footer from './footer/Footer'
 import { REALTY } from '../../types/enum'
+import {animateScroll as scroll} from 'react-scroll';
+import { useRef } from 'react'
 
 const Main = () => {
+  const scrollRef = useRef(scroll);
   return (
-    <div className='main'>
+    <div className='main' >
         <Header />
         <About />
         <Services />

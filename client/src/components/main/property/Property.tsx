@@ -19,7 +19,7 @@ const Property = ({ realty }: { realty: REALTY }) => {
   }
 
   return (
-    <div className="properties">
+    <div className="properties" id={realty.split(/\s+/).map(word => word[0].toUpperCase() + word.substring(1)).join(' ')}>
       <div className='wraper--content properties__wrap'>
         <h4 className='route--name'>Properties for {realty.split(/\s+/).map(word => word[0].toUpperCase() + word.substring(1)).join(' ')}</h4>
         <div className="properties__list">
