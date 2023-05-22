@@ -1,0 +1,30 @@
+@font-face {
+    font-family: "CeraPro-Regular";
+    src: url("../../public/fonts/CeraProRegular.otf") format("otf");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Georgia-Regular";
+    src: url("../../public/fonts/GeorgiaRegular.ttf") format("ttf");
+    font-weight: 400;
+    font-style: normal;
+}
+
+$font-cera-pro-regular: "CeraPro-Regular", sans-serif;
+$font-georgia-regular: "Georgia-Regular", sans-serif;
+
+$color_orange1: #D1A666;
+$color_orange2: #fee1a6;
+$color_orange3:  rgba(209, 166, 102, 0.5);
+
+$color_black: #000;
+$color_black1: #1F251E;
+$color_black2: #1A1F19;
+$color_black3: #1A1B16;
+$color_black4: rgba(0, 0, 0, 0.9);
+
+$color_green: #1F251E;
+
+$ln_grad1: linear-gradient(to right, #fee1a6 50%, #efc07a 50%, #D1A666);

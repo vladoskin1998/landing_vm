@@ -1,0 +1,119 @@
+@import "../variables.scss";
+
+.footer {
+    position: relative;
+    color: $color_orange1;
+    &__wrap {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 15px;
+    }
+    &__bg {
+        background-color: $color_black2;
+    }
+    &__buisness {
+        &-day {
+            margin-top: 74px;
+            font-weight: 400;
+            font-size: 20px;
+            line-height: 25px;
+
+            p {
+                font-weight: 700;
+            }
+            h6 {
+                padding-bottom: 30px;
+            }
+            &__week {
+                margin-top: 30px;
+                display: inline;
+            }
+            padding: 50px;
+            max-width: 463px;
+            width: 100%;
+            height: 205px;
+            border: 1px solid $color_orange1;
+            border-radius: 50px;
+        }
+    }
+    &__contact {
+        h5 {
+            padding-bottom: 74px;
+        }
+        h6 {
+            font-weight: 700;
+            padding-bottom: 10px;
+        }
+        a {
+            display: block;
+            font-weight: 400;
+            padding-bottom: 3px;
+        }
+        &-links {
+            column-gap: 17vw;
+            padding-top: 50px;
+            display: flex;
+            &_dev {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+                row-gap: 60px;
+                color: inherit;
+                :hover {
+                    & svg {
+                        path {
+                            stroke: $color_orange2;
+                        }
+                    }
+                }
+                .hover-link:hover {
+                    & svg {
+                        path {
+                            fill: $color_orange2;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1050px) {
+    .footer {
+        &__wrap {
+            grid-template-columns: auto;
+            grid-template-rows: auto auto;
+            row-gap: 80px;
+        }
+        &__buisness {
+            &-day {
+                padding: 32px;
+                font-size: 16px;
+                height: 162.68px;
+                h6{
+                    padding-bottom: 23px;
+                }
+            }
+        }
+        
+        &__contact{
+            font-size: 16px;
+            h5{
+                padding-bottom: 50px;
+            }
+            &-links{
+                flex-direction: column;
+                &_dev{
+                    flex-direction: row;
+                    justify-content: space-between;
+                    & > a:first-child{
+                        padding-bottom: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 450px) {
+}

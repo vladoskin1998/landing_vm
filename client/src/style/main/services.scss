@@ -1,0 +1,35 @@
+@import "../variables.scss";
+.services {
+    height: 700px;
+    position: relative;
+    color: $color_black3;
+    &__body {
+        .route--name {
+            color: $color_black3;
+        }
+        ul {
+            margin-top: 60px;
+            list-style: disc;
+            padding-left: 25px;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 140%;
+        }
+    }
+
+    &_bg {
+        background-image: url("../../../public/images/services.jpg");
+    }
+}
+
+@media only screen and (max-width: 1050px) {
+    .services__body {
+        ul {
+            margin-top: 20px;
+            font-size: 12px;
+        }
+    }
+}
+
+@media only screen and (max-width: 450px) {
+}

@@ -1,0 +1,106 @@
+@import "../variables.scss";
+.media {
+    padding: 25px 60px 43px 60px;
+    color: $color_orange1;
+    font-size: 14px;
+    &__nav {
+        display: flex;
+        column-gap: 80px;
+        padding-bottom: 30px;
+        &>div{
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        &-slider {
+            width: 762px;
+        }
+        &-text {
+            flex-grow: 1;
+        }
+    }
+    &__wrap_content{
+        display: flex;
+        column-gap: 80px;
+    }
+    &__slider {
+        height: calc(100vh - 130px);
+        max-width: 762px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        .slick-initialized{
+            height: 100%;
+            background-color: red;
+        }
+        &-nav{
+            margin-top: 36px;
+            display: flex;
+            justify-content: center;
+            column-gap: 60px;
+        }
+    }
+    &__info{
+        padding-top: 50px;
+        display: flex;
+        flex-direction: column;
+        &-desc{
+            padding-top: 30px;
+        }
+        .reviews__list_button{
+            position: static;
+        }
+        .header__nav-buttons{
+            flex-direction: column;
+            row-gap: 10px;
+            font-size: 20px;
+        }
+        &-more{
+            padding-top: 30px;
+            text-align: end;
+            margin-bottom: 80px;
+            flex-grow: 1;
+        }
+    }
+
+}
+
+@media only screen and (max-width: 1050px) {
+    .media {
+        padding: 12px 12px 50px 12px;
+        &__nav{
+            position: relative;
+            &-slider{
+                &>div{
+                    display: none;
+                }
+            }
+            &-text{
+                h5{
+                    position: absolute;
+                    top: 100px;
+                    left: 0;
+                }
+            }
+        }
+        &__wrap_content{
+            margin-top: 98px;
+            flex-direction: column;
+        }
+        &__slider{
+            height: 257px;
+            &-nav{
+                display: none;
+            }
+        }
+        &__info{
+            padding-top: 30px;
+            &-more{
+                margin-bottom: 50px;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 450px) {}

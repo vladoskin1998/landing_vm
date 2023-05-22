@@ -1,0 +1,16 @@
+# Ignore files in the server directory
+/server/node_modules
+/server/dist
+/server/.env
+
+# Ignore files in the client directory
+/client/node_modules
+/client/build
+
+# Ignore general editor and OS files
+.vscode
+.idea
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

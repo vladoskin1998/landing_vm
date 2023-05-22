@@ -1,0 +1,164 @@
+@import "variables.scss";
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
+/* Обнуляющие стили для ссылок */
+a:link,
+a:visited {
+  color: inherit; /* Наследование цвета текста */
+  text-decoration: none; /* Удаление подчеркивания */
+}
+
+a:hover,
+a:focus,
+a:active {
+  cursor: pointer;
+  text-decoration: none; /* Подчеркивание при наведении, фокусе и активном состоянии */
+}
+/* Обнуляющие стили для списков */
+ul,
+ol {
+    list-style: none;
+}
+
+/* Обнуляющие стили для изображений */
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    padding: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+button {
+    padding: 0;
+    border: none;
+    font: inherit;
+    color: inherit;
+    background-color: transparent;
+    cursor: pointer;
+}
+input {
+  all: unset; /* Сбрасываем все стили инпута */
+  text-align: start;
+}
+body {
+    margin: 0;
+    background-color: $color_green;
+    font-family: $font-cera-pro-regular;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    line-height: 1.1;
+    overflow-x: hidden;
+    box-sizing: border-box;
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
+}
+
+#root {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.app {
+    width: 100%;
+     max-width: 1440px;
+}
+
+.style--image {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.wraper--content{
+  position: relative;
+  z-index: 2;
+}
+
+.bg--content{
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, 0);
+  height: 100%;
+  width: 100vw;
+}
+
+.route--name{
+  color: $color_orange1;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 30px;
+  text-align: start;
+}
+
+a {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  background: $ln_grad1;
+  width: auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 100%;
+  background-position: 100%;
+  transition: background-position 575ms ease;
+  text-decoration: none; // text decorations are clipped in WebKit browsers
+  &:hover {
+    background-position: 0 100%;
+  }
+}
+.style--close{
+  transform: rotate(0);
+  transition: transform 0.4s ease;
+
+  &:hover {
+      transform: rotate(180deg);
+  }
+}
+
+.main{
+  &>div{
+    padding: 180px 60px;
+  }
+  .header{
+    padding: 0;
+  }
+}
+
+@media only screen and (max-width: 1050px) {
+  .route--name{
+    color: $color_orange1;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 30px;
+  }
+  .main{
+    &>div{
+      padding: 95px 12px;
+    }
+    .header{
+      padding: 0;
+    }
+  }
+  
+}
