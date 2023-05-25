@@ -16,10 +16,10 @@ export class Posts {
   city: string;
 
   @Prop()
-  price: string | number;
+  price: string;
 
   @Prop()
-  additionalFields: { label: string; value: string }[];
+  additionalFields?: { label: string; value: string }[];
 
   @Prop()
   images: string[];

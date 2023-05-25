@@ -1,0 +1,110 @@
+
+.login {
+    font-size: 14px;
+    position: fixed;
+    top: 20px;
+    left: 4%;
+    min-width: 300px;
+    border-radius: 4px;
+    padding: 15px 40px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 3px;
+    border: 1px solid $color_blue1;
+    background-color: $color_white;
+    z-index: 5;
+    row-gap: 14px;
+    &_item{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        row-gap: 2px;
+    }
+    button {
+        font-size: 14px;
+    }
+    &__text {
+        text-align: start;
+        color: $color_blue1;
+        &-req{
+            color: $color_red;
+        }
+    }
+    &__input {
+        border: 1px solid $color_blue2;
+        height: 25px;
+        padding: 0 2px;
+        z-index: 6;
+    }
+    &__nav {
+        margin: 14px 0 0 0;
+        display: flex;
+        justify-content: end;
+        column-gap: 12px;
+        &--delete {
+            padding: 4px 16px;
+            border: 1px solid $color_red;
+            border-radius: 4px;
+            color: $color_red;
+        }
+        &--add {
+            color: $color_blue1;
+            padding: 4px 16px;
+            border: 1px solid $color_blue1;
+            border-radius: 4px;
+        }
+    }
+    &__logout {
+        position: fixed;
+        top: 20px;
+        right: 4%;
+        width: fit-content;
+        color: $color_blue1;
+        z-index: 7;
+        &--delete{
+            padding: 4px 16px;
+            border: 1px solid $color_red;
+            border-radius: 4px;
+            color: $color_red;
+        }
+    }
+}
+
+.login.add {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    min-width: 400px;
+    & li{
+        display: flex;
+        justify-content: space-between;
+    }
+    .media--add {
+        position: static;
+    }
+    .add__label{
+        cursor: pointer;
+    }
+    .add__del{
+        color: $color_red;
+        margin-left: 15px;
+    }
+}
+
+#file-upload {
+    display: none;
+}
+
+#file-bgupload {
+    display: none;
+}
+
+.add__ul{
+    max-height: 200px;
+    overflow: scroll;
+    padding-right: 15px;
+}

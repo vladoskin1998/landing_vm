@@ -3,6 +3,17 @@
 .properties {
     color: $color_orange1;
     position: relative;
+    &__add {
+        position: absolute;
+        top: 70px;
+        left: 60px;
+        &--but {
+            padding: 4px 16px;
+            border: 1px solid $color_red;
+            border-radius: 4px;
+            color: $color_red;
+        }
+    }
     &__list {
         margin-top: 80px;
         display: grid;
@@ -14,7 +25,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-           
+
             img {
                 width: 100%;
                 cursor: pointer;
@@ -53,14 +64,13 @@
                     font-size: 20px;
                 }
             }
-          
+
             &_line {
                 max-width: 300px;
                 width: 80%;
                 height: 0px;
                 border: 1px solid $color_orange1;
                 margin: 20px 20px 0 20px;
-                
             }
         }
     }
@@ -68,12 +78,11 @@
 
 @media only screen and (max-width: 1050px) {
     .properties {
-        
         &__list {
             grid-template-columns: 50% 50%;
-            &-item_info{
+            &-item_info {
                 font-size: 12px;
-                h5{
+                h5 {
                     font-size: 16px;
                 }
             }
@@ -87,11 +96,11 @@
             margin-top: 50px;
             grid-template-columns: auto;
             row-gap: 50px;
-            &-item{
+            &-item {
                 & img {
                     height: 280px;
                 }
-            }  
+            }
         }
     }
 }

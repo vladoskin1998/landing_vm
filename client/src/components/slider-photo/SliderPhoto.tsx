@@ -53,7 +53,7 @@ const SliderPhoto = () => {
         <div className="media__slider ">
           <Slider {...settings} ref={refSlick}>
             {
-              list.map(it => <img src={it} />)
+              list.map((it, index) => <img src={it} key={index}/>)
             }
           </Slider>
           <div className="media__slider-nav">

@@ -1,6 +1,9 @@
 import { useNavigate } from 'react-router-dom'
 import '../../../style/main/properties.scss'
 import { REALTY } from '../../../types/enum'
+import { useContext } from 'react'
+import { AppContext } from '../../../context/context'
+
 const list = [
   { id: 0, city: "Kametnitha, Plovdiv", price: "82 000 €", size: "82 кв.м ", bg: "red" },
   { id: 1, city: "Kametnitha, Plovdiv", price: "82 000 €", size: "82 кв.м ", bg: "red" },
@@ -13,6 +16,7 @@ const list = [
 const Property = ({ realty }: { realty: REALTY }) => {
 
   const navigate = useNavigate()
+  const { isAuth } = useContext(AppContext);
 
   const navigateToSlider = (id: string | number) => {
     navigate(`/photos-${realty}/:setId`)
@@ -24,7 +28,7 @@ const Property = ({ realty }: { realty: REALTY }) => {
         <h4 className='route--name'>Properties for {realty.split(/\s+/).map(word => word[0].toUpperCase() + word.substring(1)).join(' ')}</h4>
         <div className="properties__list">
           {
-            list.map(it => <div className="properties__list-item">
+            list.map((it, index) => <div className="properties__list-item" key={index}>
               <img
                 src={it.bg}
                 className='style--image' onClick={() => navigateToSlider(it.id)}
@@ -39,6 +43,15 @@ const Property = ({ realty }: { realty: REALTY }) => {
         </div>
       </div>
       <div className='bg--content' style={{ background: REALTY.RENT === realty ? "#1A1F19" : "inherit" }}></div>
+      {
+        isAuth &&
+        <div className='properties__add'>
+          <button className='properties__add--but'>
+            + Add {realty.split(/\s+/).map(word => word[0].toUpperCase() + word.substring(1)).join(' ')} Post
+          </button>
+        </div>
+      }
+
     </div>
   )
 }

@@ -30,3 +30,9 @@ export const MENU_LIST = [
     "Reviews",
     "Contacts",
 ]
+
+
+export const HREF
+    = window.location.hostname === 'localhost'
+    	? 'http://localhost:5001/'
+    	: 'https://';

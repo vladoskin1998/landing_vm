@@ -17,7 +17,7 @@ const Reviews = () => {
       <h2>Happy Clients</h2>
       <div className='reviews__list'>
         {
-          list.map(it => <div className='reviews__list-item'>
+          list.map((it, index) => <div className='reviews__list-item' key={index}>
             <div className='reviews__list-item_gate'>
               <span>“</span> <div />
             </div>
@@ -25,7 +25,7 @@ const Reviews = () => {
             <h6>- {it.name}</h6>
           </div>)
         }
-         <ButtonMore />
+        <ButtonMore />
       </div>
       <h4 className='reviews__title'>Thanks to you we are becoming better!</h4>
       <ReviewsForm />

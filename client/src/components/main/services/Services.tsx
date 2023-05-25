@@ -7,7 +7,7 @@ const Services = () => {
         <h4 className='route--name'>Services</h4>
       <ul>
         {
-          list.map(it => <li>{it}</li>)
+          list.map((it,index) => <li key={index}>{it}</li>)
         }
       </ul>
       </div>

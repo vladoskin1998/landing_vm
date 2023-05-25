@@ -9,7 +9,6 @@ const About = () => {
             <div className="style--image" />
             <div className="style--image" />
           </div>
-
           <p className="about__images-p">Our vision is to be the most trusted and respected real Estate Agency in Plovdiv </p>
         </div>
         <div className="about__text">
@@ -18,7 +17,7 @@ const About = () => {
           <h5>Главные принципы нашей работы:</h5>
           <ul className='about__text-u1'>
             {
-              list.map(it => <li>{it}</li>)
+              list.map((it, index) => <li key={index}>{it}</li>)
             }
           </ul>
           <p className='about__text-pfoot'>Our vision is to be the most trusted and respected real Estate Agency in Plovdiv </p>

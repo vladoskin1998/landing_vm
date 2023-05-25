@@ -15,13 +15,13 @@ import { FileFieldsInterceptor } from '@nestjs/platform-express';
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
-  @Post('get-folders')
-  async getFolders(@Body() { tag }: { tag: PostsTypeTag }) {
-  //  return await this.postsService.getPosts(tag);
+  @Post('get-posts')
+  async getPosts(@Body() { tag }: { tag: PostsTypeTag }) {
+    return await this.postsService.getPosts(tag);
   }
 
   @UseGuards(JwtAuthGuard)
-  @Post('add-folder')
+  @Post('add-posts')
   @UseInterceptors(
     FileFieldsInterceptor([
       {
@@ -34,24 +34,21 @@ export class PostsController {
       },
     ]),
   )
-  async addFolder(@UploadedFiles() binary, @Body() body) {
-   // const { title, tag }: { title: string; tag: MediaTypeFile } = body;
-    // const filenames: string[] = binary.files.map((file) => file.filename);
-    // const bgfiles = binary.bgfiles[0].filename;
+  async addPosts(@UploadedFiles() binary, @Body() post) {
+    const images: string[] = binary.files.map((file) => file.filename);
+    const bgFolderImages: string = binary.bgfiles[0].filename;
 
-    // await this.mediaService.addFolder({
-    //   title,
-    //   filenames,
-    //   tag,
-    //   bgfiles,
-    // });
-
-    // return { message: 'Файл загружен' };
+    await this.postsService.addPost({
+      ...post,
+      images,
+      bgFolderImages,
+    });
+    return { message: 'File downloaded' };
   }
 
   @UseGuards(JwtAuthGuard)
-  @Post('delete-folder')
-  async deleteFolder(@Body() { id }: { id: string }) {
-  //  return await this.postsService.deleteFolder(id);
+  @Post('delete-posts')
+  async deletePosts(@Body() { id }: { id: string }) {
+    //  return await this.postsService.deleteFolder(id);
   }
 }

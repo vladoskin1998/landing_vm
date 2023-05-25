@@ -1,4 +1,6 @@
 @import "variables.scss";
+@import "./admin/admin.scss";
+
 *,
 *::before,
 *::after {
@@ -25,7 +27,7 @@ ol {
     list-style: none;
 }
 
-/* Обнуляющие стили для изображений */
+
 img {
     display: block;
     max-width: 100%;

@@ -25,7 +25,7 @@ const SliderHeader = () => {
                     if (item === (count + 1) % 3) {
                         classN = 'next'
                     }
-                    return <div className={classN + ' slide style--image'} ></div>
+                    return <div key={item} className={classN + ' slide style--image'} ></div>
                 })
             }
         </div>
