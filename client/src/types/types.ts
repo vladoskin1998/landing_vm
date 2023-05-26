@@ -3,6 +3,7 @@ import { REALTY } from "./enum"
 export type PostsTypeTag = REALTY.RENT | REALTY.SALE
 
 export type PostsType = {
+    _id: string
     area: string
     district: string
     city: string

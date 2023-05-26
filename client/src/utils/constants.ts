@@ -36,3 +36,13 @@ export const HREF
     = window.location.hostname === 'localhost'
     	? 'http://localhost:5001/'
     	: 'https://';
+
+
+export const PostField = [
+    "area",
+    "district",
+    "city",
+    "price",
+    "additionalFields",
+    "tag",
+]

@@ -5,19 +5,22 @@ import {
   UploadedFiles,
   UseGuards,
   UseInterceptors,
+  Get,
 } from '@nestjs/common';
 import { PostsService } from './posts.service';
-import { PostsTypeTag } from '../types/types';
 import { JwtAuthGuard } from '../authentication/authentication.guard';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
+import { PostsTagDto, PostDto } from './posts.dto';
 
 @Controller('posts')
 export class PostsController {
   constructor(private readonly postsService: PostsService) {}
 
-  @Post('get-posts')
-  async getPosts(@Body() { tag }: { tag: PostsTypeTag }) {
-    return await this.postsService.getPosts(tag);
+  @Get('get-posts')
+  async getPosts() {
+    console.log('/get-posts');
+    
+    return await this.postsService.getPosts();
   }
 
   @UseGuards(JwtAuthGuard)
@@ -34,12 +37,12 @@ export class PostsController {
       },
     ]),
   )
-  async addPosts(@UploadedFiles() binary, @Body() post) {
+  async addPosts(@UploadedFiles() binary, @Body() dto: PostDto) {
     const images: string[] = binary.files.map((file) => file.filename);
     const bgFolderImages: string = binary.bgfiles[0].filename;
 
     await this.postsService.addPost({
-      ...post,
+      ...dto,
       images,
       bgFolderImages,
     });

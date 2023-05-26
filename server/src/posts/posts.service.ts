@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Posts } from './posts.schema';
 import { Model } from 'mongoose';
-import { PostsTypeTag, PostsType } from 'src/types/types';
+import { PostsTypeTag, PostType } from '../types/types';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -10,11 +10,11 @@ import * as path from 'path';
 export class PostsService {
   constructor(@InjectModel(Posts.name) private postsModel: Model<Posts>) {}
 
-  async getPosts(tag: PostsTypeTag) {
-    return await this.postsModel.find({ tag });
+  async getPosts() {
+    return await this.postsModel.find();
   }
 
-  async addPost(post: PostsType) {
+  async addPost(post: PostType) {
     return await this.postsModel.create(post);
   }
 

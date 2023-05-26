@@ -1,25 +1,31 @@
-import React, {useState, useEffect, useContext, useRef} from 'react';
-import {$authApi} from '../../api/api';
-import {AppContext} from '../../context/context';
+import React, { useState, useEffect, useContext, useRef } from 'react';
+import { AppContext } from '../../context/AppContext';
+import { AuthContext } from '../../context/AuthContext';
 
 export const Login = () => {
+
 	const modalRef = useRef<HTMLDivElement>(null);
 	const [showModal, setShowModal] = useState(false);
+
 	const [login, setLogin] = useState('Veronika');
 	const [password, setPassword] = useState('VeronRealty1221');
-	const {isAuth, setIsAuth, device} = useContext(AppContext);
-    
+
+	const { device } = useContext(AppContext);
+
+	const { isAuth, loginAuth, logoutAuth } = useContext(AuthContext)
+
+
 	useEffect(() => {
 		const keysPressed: Record<string, boolean> = {};
 
-		const downHandler = ({key}: KeyboardEvent) => {
+		const downHandler = ({ key }: KeyboardEvent) => {
 			keysPressed[key] = true;
 			if (keysPressed.q && keysPressed.m && keysPressed.f && device === 'pc') {
 				setShowModal(true);
 			}
 		};
 
-		const upHandler = ({key}: KeyboardEvent) => {
+		const upHandler = ({ key }: KeyboardEvent) => {
 			keysPressed[key] = false;
 		};
 
@@ -32,36 +38,15 @@ export const Login = () => {
 		};
 	}, []);
 
-	const loginAuth = (e: React.MouseEvent<HTMLButtonElement>) => {
+
+	const handlerLoginAuth = async (e: React.MouseEvent<HTMLButtonElement>) => {
 		e.stopPropagation();
-		$authApi.post('login',
-			{login, password},
-		)
-			.then(m => {
-                console.log(m.data);
-                localStorage.setItem('token', m.data);
-				setIsAuth(m.data);
-				setShowModal(false);
-			})
-			.catch(error => {
-                alert(error?.response?.data?.message || 'Error occurred');
-			},
-			);
+		await loginAuth({ login, password })
+		setShowModal(false)
 	};
 
-	const logoutAuth = () => {
-		$authApi.post('logout',
-			{token: localStorage.getItem('token')},
-
-		).then(
-			() => {
-				setIsAuth('');
-			},
-		)
-			.catch(e => {
-				alert(e);
-			},
-			);
+	const handlerLogoutAuth = () => {
+		logoutAuth()
 	};
 
 	const handlerLogin = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -103,9 +88,9 @@ export const Login = () => {
 						<button className='login__nav--delete' onClick={() => {
 							setShowModal(false);
 						}}>
-                            Cancel
+							Cancel
 						</button>
-						<button className='login__nav--add' onClick={loginAuth}>Login</button>
+						<button className='login__nav--add' onClick={handlerLoginAuth}>Login</button>
 					</div>
 				</div>
 
@@ -113,7 +98,7 @@ export const Login = () => {
 			{
 				isAuth
 					? <div className='login__logout'>
-						<button className='login__logout--delete' onClick={logoutAuth}>Logout</button>
+						<button className='login__logout--delete' onClick={handlerLogoutAuth}>Logout</button>
 					</div>
 					: <></>
 			}

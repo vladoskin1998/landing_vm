@@ -2,11 +2,14 @@
 
 .loader__wrap{
     position: fixed;
+    top: 0;
+    left: 0;
     width: 100vw;
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 100;
 }
 .loader {
     transform: rotateZ(45deg);
@@ -15,6 +18,7 @@
     width: 88px;
     height: 88px;
     color: $color_black;
+    z-index: 100;
   }
     .loader:before,
     .loader:after {
