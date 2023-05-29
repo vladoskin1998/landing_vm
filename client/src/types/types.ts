@@ -1,17 +1,26 @@
-import { REALTY } from "./enum"
+import { REALTY, LANGUAGE} from "./enum"
 
 export type PostsTypeTag = REALTY.RENT | REALTY.SALE
 
-export type PostsType = {
-    _id: string
+export type LanguageType = LANGUAGE.EN | LANGUAGE.BG | LANGUAGE.RO | LANGUAGE.RU
+
+export type RequiredPostFileds = {
     area: string
     district: string
     city: string
     price: string | number
-    additionalFields?: { label: string; value: string }[]
+}
+
+export type AdditionalFieldType = { label: string; value: string }
+
+export interface PostsInterface extends RequiredPostFileds {
+    _id: string
+    additionalFields?: string
     images: string[]
     bgFolderImages: string
     tag: PostsTypeTag
+    description: string;
+
 }
 
 export type CommentsType = {
@@ -25,3 +34,4 @@ export type DeviceType = "pc" | "mobile" | "tablet"
 export type DecodedToken = {
     exp: number
 }
+

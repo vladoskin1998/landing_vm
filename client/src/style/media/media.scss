@@ -47,11 +47,15 @@
         flex-direction: column;
         &-desc{
             padding-top: 30px;
+            word-wrap: break-word;
+            word-break: break-all;
         }
         .reviews__list_button{
             position: static;
         }
         .header__nav-buttons{
+            margin-top: 80px;
+            margin-bottom: 56px;
             flex-direction: column;
             row-gap: 10px;
             font-size: 20px;
@@ -59,7 +63,6 @@
         &-more{
             padding-top: 30px;
             text-align: end;
-            margin-bottom: 80px;
             flex-grow: 1;
         }
     }

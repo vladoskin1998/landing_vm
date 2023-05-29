@@ -5,26 +5,39 @@ import '../../style/media/media.scss'
 import HeaderContact from "../main/header/HeaderContact";
 import ButtonMore from "../main/reviews/ButtonMore";
 import { ButtonClose } from "../ui/ButtonClose";
-import { useNavigate } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
 import { ShevronsLeft, ShevronsRight } from "../svg/Shevrons";
 import { LazyLoadTypes } from 'react-slick';
+import { HREF } from "../../utils/constants";
+import { PostsInterface, AdditionalFieldType } from "../../types/types";
+import { $api } from "../../api/api";
+import { AxiosResponse } from 'axios';
 
-const list = [
-  "link",
-  "link",
-  "link",
-  "link",
-]
 
 const SliderPhoto = () => {
 
   const navigate = useNavigate()
 
+  const { setId } = useParams()
+  const [post, setPost] = useState<PostsInterface | undefined>()
+  const [moreButton, setMoreButton] = useState(false)
+
   const refSlick = useRef<Slider>(null);
   const [count, setCount] = useState(1)
 
-  var settings = {
+
+  useEffect(() => {
+    $api.post("/posts/get-one-post", { _id: setId })
+      .then(
+        (r: AxiosResponse<PostsInterface>): void => {
+          setPost({ ...r.data, description: r.data.description || '' })
+        }
+      )
+      .catch()
+  }, [])
+
+  let settings = {
     arrows: false,
     dots: false,
     infinite: false,
@@ -53,7 +66,7 @@ const SliderPhoto = () => {
         <div className="media__slider ">
           <Slider {...settings} ref={refSlick}>
             {
-              list.map((it, index) => <img src={it} key={index}/>)
+              post?.images.map((it, index) => <img src={`${HREF}uploads/${it})`} key={index} />)
             }
           </Slider>
           <div className="media__slider-nav">
@@ -67,17 +80,25 @@ const SliderPhoto = () => {
         </div>
 
         <div className="media__info">
-          <h6>Обща площ: 72 кв. м.</h6>
-          <h6>Цена: 63 400 евро</h6>
-          <h6>Город: Kametnitha, Plovdiv</h6>
+          <h6>Обща площ: {post?.area}</h6>
+          <h6>Цена: {post?.price}</h6>
+          <h6>Город:  {post?.district}, {post?.city}</h6>
+          {
+            post?.additionalFields?.length
+              ? JSON.parse(post?.additionalFields).map((it: AdditionalFieldType, index: number) =>
+                <h6 key={index}>{it.label}: {it.value}</h6>)
+              : <></>
+          }
           <p className="media__info-desc">
-            100% при подписване на нотариален акт за собственост
-            Предлагаме за продажба напълно готов за живеене или отдаване под наем просторен апартамент с тераса – мебелите и уредите остават. Има голяма баня.
-            Комплекс "Блу уотър" се намира на красиво и живописно място, наречено Свети Влас. Мястото, където се срещат планините и морето, където е най-чистият въздух и нежното море...
+            {moreButton
+              ? post?.description
+              : post?.description?.slice(0, 200) + (post?.description.length ? "..." : '')}
           </p>
-          <div className="media__info-more">
-            <ButtonMore />
-          </div>
+          {
+            !moreButton && <div className="media__info-more" onClick={() => setMoreButton(true)}>
+              <ButtonMore />
+            </div>
+          }
 
           <HeaderContact />
         </div>

@@ -1,11 +1,9 @@
 import { useNavigate } from 'react-router-dom'
 import '../../../style/main/properties.scss'
 import { useContext, useEffect, useState } from 'react'
-import { AppContext } from '../../../context/context'
+import { DataContext } from '../../../context/DataContext' 
 import ModalAdd from './ModalAdd'
-import { $api } from '../../../api/api'
-import { AxiosResponse } from 'axios'
-import { PostsType, PostsTypeTag } from '../../../types/types'
+import { PostsTypeTag } from '../../../types/types'
 import { REALTY } from '../../../types/enum'
 import PropertyList from './PropertyList'
 import { firstUpperLetter } from '../../../utils/methods'
@@ -14,8 +12,8 @@ import { AuthContext } from '../../../context/AuthContext'
 const Property = ({ postTag }: { postTag: PostsTypeTag }) => {
 
   const { isAuth } = useContext(AuthContext)
-  
-  const [open, setOpen] = useState(false)
+  const { listPost } = useContext(DataContext)
+
 
   return (
     <div className="properties" id={firstUpperLetter(postTag)}>
@@ -24,8 +22,7 @@ const Property = ({ postTag }: { postTag: PostsTypeTag }) => {
         <div className="properties__list">
           <PropertyList
             postTag={postTag}
-           // list={listPost.filter(it => it.tag !== postTag)}
-           list={[]}
+            list={listPost.filter(it => it.tag === postTag)}
           />
         </div>
       </div>
@@ -33,13 +30,8 @@ const Property = ({ postTag }: { postTag: PostsTypeTag }) => {
       {
         isAuth &&
         <div className='properties__add'>
-          <button className='properties__add--but' onClick={() => setOpen(true)}>
-            + Add {firstUpperLetter(postTag)} Post
-          </button>
-          {
-            open && <ModalAdd postTag={postTag} />
-          }
 
+          <ModalAdd postTag={postTag} />
         </div>
       }
 

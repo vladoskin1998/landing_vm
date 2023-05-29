@@ -1,46 +1,97 @@
 import React, { useState, useContext, useRef, useEffect } from 'react';
-import { AppContext } from '../../../context/context';
+import { AdditionalFields } from './AdditionalFields';
 import { $api } from '../../../api/api';
-import { PostField } from '../../../utils/constants';
+import { PostField as fields } from '../../../utils/constants';
 // import { dataUpload } from '../../utils/componentParams';
-// import { FormatMedia } from '../../types/types-main';
-// import { FilesList } from './filesList';
-import Loader from '../../ui/Loader';
+import { firstUpperLetter } from '../../../utils/methods'
+import { FilesList } from './FileList';
 import { REALTY } from '../../../types/enum'
-import { PostsTypeTag } from '../../../types/types';
+import { PostsTypeTag, AdditionalFieldType } from '../../../types/types';
 import { AuthContext } from '../../../context/AuthContext';
+import { AppContext } from '../../../context/AppContext';
+import { RequiredFieldList } from './RequiredFieldList';
+import { FormatImages } from '../../../utils/constants';
+
 
 export const ModalAdd = ({ postTag }: { postTag: PostsTypeTag }) => {
 
-
+	console.log("postTag--->", postTag);
 	
 
-	const [files, setFiles] = useState<File[]>([]);
-	const [bgFiles, setBgFiles] = useState<File[]>([]);
-	const [folder, setFolder] = useState('');
+	const { setLoader } = useContext(AppContext)
 	const { setIsAuth } = useContext(AuthContext);
-//	const { format, tag } = dataUpload(link);
-	const modalRef = useRef<HTMLDivElement>(null);
-	const [loader, setLoader] = useState(false);
 
-	useEffect(() => {
-		function handleClickOutside(event: MouseEvent) {
-			if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
-				close();
-			}
+	const [open, setOpen] = useState(false)
+
+	const [files, setFiles] = useState<File[]>([]);
+
+	const [bgFiles, setBgFiles] = useState<File[]>([]);
+
+	const [additionalFields, setAdditionalFields] = useState<AdditionalFieldType[]>([]);
+
+	const [description, setDescription] = useState('')
+	const [reqFields, setReqFields] = useState<Record<string, string>>({
+		area: '',
+		district: '',
+		city: '',
+		price: '',
+	})
+
+	const close = () => setOpen(false)
+
+	const handleUpload = async () => {
+		const formData = new FormData();
+
+		formData.append('tag', postTag);
+		
+		formData.append('description', description);
+
+		formData.append('additionalFields', JSON.stringify(additionalFields));
+
+		for (const field in reqFields) {
+			formData.append(field, reqFields[field]);
 		}
 
-		let total = 0;
+		formData.append('bgFolderImages', bgFiles[0]);
+
 		for (let i = 0; i < files.length; i++) {
-			total += files[i]?.size;
+			formData.append('images', files[i]);
+		}
+
+		if (
+			!bgFiles.length
+			|| !files.length
+			|| !reqFields?.area.length
+			|| !reqFields?.district.length
+			|| !reqFields?.city.length
+			|| !reqFields?.price.length
+		) {
+			alert("Fill in required fields")
+			return 0
 		}
 
 
-		document.addEventListener('click', handleClickOutside);
-		return () => {
-			document.removeEventListener('click', handleClickOutside);
-		};
-	}, [modalRef, files, bgFiles]);
+
+		try {
+			setLoader(true)
+			await $api.post('posts/add-posts', formData, {
+				headers: { 'Content-Type': 'multipart/form-data' },
+			})
+			setLoader(false)
+			alert('Success upload, update site');
+			close();
+			window.location.reload();
+		} catch (error: any) {
+			if (error?.response?.status === 401) {
+				setIsAuth('');
+			}
+			setLoader(false)
+			alert(error?.response?.data?.message || 'Error occurred');
+		}
+	};
+
+	const modalRef = useRef<HTMLDivElement>(null);
+
 
 	const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setFiles(e.target.files as unknown as File[]);
@@ -62,102 +113,81 @@ export const ModalAdd = ({ postTag }: { postTag: PostsTypeTag }) => {
 		);
 	};
 
-	const handleUpload = async () => {
-		const formData = new FormData();
-	
+	console.log(open);
 
 
 
-
-		formData.append('title', folder);
-	//	formData.append('tag', tag);
-		formData.append('bgfiles', bgFiles[0]);
-		for (let i = 0; i < files.length; i++) {
-			formData.append('files', files[i]);
-		}
-
-		try {
-			setLoader(true)
-			await $api.post('media/add-folder', formData, {
-				headers: { 'Content-Type': 'multipart/form-data' },
-			})
-			setLoader(false)
-			alert('Success upload, update site');
-			close();
-			window.location.reload();
-		} catch (error: any) {
-			if (error?.response?.status === 401) {
-				setIsAuth('');
-			}
-			setLoader(false)
-
-			
-			alert(error?.response?.data?.message || 'Error occurred');
-		}
-	};
-
-	const handlerSetFolder = (e: React.ChangeEvent<HTMLInputElement>) => {
-		setFolder(e.target.value);
-	};
 
 	return (
 		<>
-			<div className='login add' ref={modalRef}>
-				<h4 className='login__text'>Add Collection</h4>
-				<div className='login_item'>
-					<h4 className='login__text'>
-						<span className='login__text login__text-req'>UNIQ</span> NAME FOLDER
-						{
-							Boolean(folder) || <span className='login__text login__text-req'>
-								Required field
-							</span>
-						}
-					</h4>
-					<input type='text' className='login__input' value={folder} onChange={handlerSetFolder} />
-				</div>
+			<button className='properties__add--but' onClick={() => setOpen(true)}>
+				+ Add {firstUpperLetter(postTag)} Post
+			</button>
+			{
+				open &&
+				<div className='login add' ref={modalRef}>
+					<h3 className='login__text'>Add Object</h3>
 
-				{/* <div className='login_item'>
-					<h4 className='login__text'>Background foulder image</h4>
-					<label htmlFor='file-bgupload' className='media--add add__label'>
-						Upload file
-					</label>
-					<input type='file' accept={FormatMedia.PHOTO} id='file-bgupload' onChange={e => {
-						handleBgFileUpload(e);
-					}} />
-					<h4 className='login__text'>{FormatMedia.PHOTO}
-						{Boolean(bgFiles.length) || <span className='login__text login__text-req'> Required field</span>}
-					</h4>
-					{
-						Boolean(bgFiles.length) && (
-							<FilesList files={bgFiles} handleFileDelete={handleBgFileDelete} />
-						)
-					}
-				</div> */}
-				{/* <div className='login_item'>
-					<h4 className='login__text'>Media files</h4>
-					<label htmlFor='file-upload' className='media--add add__label'>
-						Upload file
-					</label>
-					<input type='file' multiple accept={format} id='file-upload' onChange={e => {
-						handleFileUpload(e);
-					}} />
-					<h4 className='login__text'>{format}
-						{Boolean(files.length) || <span className='login__text login__text-req'> Required field</span>}
-					</h4>
-					{
-						Boolean(files.length) && (
-							<FilesList files={files} handleFileDelete={handleFileDelete} />
-						)
-					}
-				</div> */}
-				<div className='login__nav'>
-					<button className='login__nav--delete' onClick={close}>
-						Cancel
-					</button>
-					<button className='login__nav--add' onClick={handleUpload}>Upload To Server</button>
+					<RequiredFieldList reqFields={reqFields}
+						setReqFields={(s) => setReqFields(s)}
+					/>
+
+					<AdditionalFields additionalFields={additionalFields} setAdditionalFields={setAdditionalFields} />
+
+					<div className='login_item'>
+						<h4 className="login__text">Description</h4>
+						<textarea
+							placeholder='Description'
+							className="login__input login__input-desc"
+							value={description}
+							onChange={e => setDescription(e.target.value)}
+						/>
+					</div>
+
+
+					<div className='login_item'>
+						<h4 className='login__text'>Background foulder image</h4>
+						<label htmlFor='file-bgupload' className='login__nav--add add__label'>
+							Upload file
+						</label>
+						<input type='file' accept={FormatImages} id='file-bgupload' onChange={e => {
+							handleBgFileUpload(e);
+						}} />
+						<h4 className='login__text'>{FormatImages}
+							{Boolean(bgFiles.length) || <span className='login__text login__text-req '> Required field</span>}
+						</h4>
+						{
+							Boolean(bgFiles.length) && (
+								<FilesList files={bgFiles} handleFileDelete={handleBgFileDelete} />
+							)
+						}
+					</div>
+
+					<div className='login_item'>
+						<h4 className='login__text'>Media files</h4>
+						<label htmlFor='file-upload' className='login__nav--add add__label'>
+							Upload file
+						</label>
+						<input type='file' multiple accept={FormatImages} id='file-upload' onChange={e => {
+							handleFileUpload(e);
+						}} />
+						<h4 className='login__text'>{FormatImages}
+							{Boolean(files.length) || <span className='login__text login__text-req'> Required field</span>}
+						</h4>
+						{
+							Boolean(files.length) && (
+								<FilesList files={files} handleFileDelete={handleFileDelete} />
+							)
+						}
+					</div>
+					<div className='login__nav'>
+						<button className='login__nav--delete' onClick={close}>
+							Cancel
+						</button>
+						<button className='login__nav--add' onClick={handleUpload}>Upload To Server</button>
+					</div>
 				</div>
-			</div>
-			{loader ? <Loader /> : <></>}
+			}
 		</>
 	);
 };

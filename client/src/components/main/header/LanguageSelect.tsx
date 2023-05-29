@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import { LANGUAGE_LIST as list } from '../../../utils/constants'
 import { Plus } from '../../svg/Plus'
+import { LanguageType } from '../../../types/types'
 
 const LanguageSelect = () => {
 
     const [open, setOpen] = useState(false)
     const [lang, setLang] = useState(list)
 
-    const chageLang = (elem: string) => {
+    const chageLang = (elem: LanguageType) => {
         setLang(
             s => ([elem, ...s.filter(it => elem !== it)])
         )

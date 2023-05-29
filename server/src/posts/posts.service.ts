@@ -14,6 +14,10 @@ export class PostsService {
     return await this.postsModel.find();
   }
 
+  async getPost(_id:string){
+    return await this.postsModel.findById(_id)
+  }
+
   async addPost(post: PostType) {
     return await this.postsModel.create(post);
   }

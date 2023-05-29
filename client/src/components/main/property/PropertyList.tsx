@@ -1,13 +1,12 @@
-import React from 'react'
-import { PostsType, PostsTypeTag } from '../../../types/types'
+import { PostsInterface, PostsTypeTag } from '../../../types/types'
 import { useNavigate } from 'react-router-dom'
-
-const PropertyList = ({ list, postTag }: { list: PostsType[], postTag: PostsTypeTag }) => {
+import { HREF } from '../../../utils/constants'
+const PropertyList = ({ list, postTag }: { list: PostsInterface[], postTag: PostsTypeTag }) => {
 
     const navigate = useNavigate()
 
     const navigateToSlider = (id: string) => {
-        navigate(`/photos-${postTag}/:setId`)
+        navigate(`/photos-${postTag}/${id}`)
     }
 
     return (
@@ -15,7 +14,7 @@ const PropertyList = ({ list, postTag }: { list: PostsType[], postTag: PostsType
             {
                 list.map((it, index) => <div className="properties__list-item" key={index}>
                     <img
-                        src={it.bgFolderImages}
+                        src={ `${HREF}uploads/${it.bgFolderImages})`}
                         className='style--image' onClick={() => navigateToSlider(it._id)}
                     />
                     <div className="properties__list-item_info">

@@ -18,9 +18,13 @@ export class PostsController {
 
   @Get('get-posts')
   async getPosts() {
-    console.log('/get-posts');
-    
     return await this.postsService.getPosts();
+  }
+
+
+  @Post('get-one-post')
+  async getPost( @Body() dto: {_id:string}) {
+    return await this.postsService.getPost(dto._id);
   }
 
   @UseGuards(JwtAuthGuard)
@@ -38,8 +42,11 @@ export class PostsController {
     ]),
   )
   async addPosts(@UploadedFiles() binary, @Body() dto: PostDto) {
-    const images: string[] = binary.files.map((file) => file.filename);
-    const bgFolderImages: string = binary.bgfiles[0].filename;
+    console.log(binary);
+    console.log(dto);
+
+    const images: string[] = binary.images.map((file) => file.filename);
+    const bgFolderImages: string = binary.bgFolderImages[0].filename;
 
     await this.postsService.addPost({
       ...dto,

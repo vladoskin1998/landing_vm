@@ -18,8 +18,11 @@ export class Posts {
   @Prop()
   price: string;
 
-  @Prop()
-  additionalFields?: { label: string; value: string }[];
+  @Prop({ required: false })
+  additionalFields: string;
+
+  @Prop({ required: false })
+  description: string;
 
   @Prop()
   images: string[];

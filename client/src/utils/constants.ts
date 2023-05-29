@@ -1,3 +1,4 @@
+import { LANGUAGE } from "../types/enum"
 export const ABOUT_LIST = [
     "Предлагать качественный сервис нашим клиентам",
     "Предоставить широкий выбор привлекательной недвижимости ",
@@ -19,7 +20,7 @@ export const SERVICES_LIST = [
     "Рекламное обеспечениe",
 ]
 
-export const LANGUAGE_LIST = ["en", "ro", "bg", "ru"]
+export const LANGUAGE_LIST = [LANGUAGE.EN, LANGUAGE.BG, LANGUAGE.RO, LANGUAGE.RU]
 
 export const MENU_LIST = [
     "Home",
@@ -46,3 +47,6 @@ export const PostField = [
     "additionalFields",
     "tag",
 ]
+
+
+export const FormatImages = ".jpg, .png, .jpeg"

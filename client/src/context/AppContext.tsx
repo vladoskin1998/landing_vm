@@ -4,7 +4,7 @@ import Loader from '../components/ui/Loader';
 const AppContext = createContext<{
     device: DeviceType;
     loader: boolean;
-    setLoader: (s:boolean) => void 
+    setLoader: (s:boolean) => void;
 }>({
     device: 'pc',
     loader: false,
@@ -15,6 +15,7 @@ const AppContextProvider = ({ children, refApp }: { children: ReactNode; refApp:
 
     const [device, setDevice] = useState<DeviceType>('pc');
     const [loader, setLoader] = useState(false)
+    
 
 
     useEffect(() => {

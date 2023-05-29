@@ -4,7 +4,7 @@ import Main from './components/main/Main';
 import SliderPhoto from './components/slider-photo/SliderPhoto';
 import NoMatch from './components/ui/NoMatch';
 import Loader from './components/ui/Loader';
-import { ContextProvider } from './context/context';
+import { DataContextProvider } from './context/DataContext';
 import { Login } from './components/admin/login';
 import { AppContextProvider } from './context/AppContext';
 import { AuthContextProvider } from './context/AuthContext';
@@ -16,7 +16,7 @@ const App = () => {
     <div className='app' ref={refApp}>
       <AppContextProvider refApp={refApp}>
         <AuthContextProvider>
-        <ContextProvider refApp={refApp}>
+        <DataContextProvider>
           <Suspense fallback={<Loader />}>
             <Routes>
               <Route path='/' element={<Main />} />
@@ -30,7 +30,7 @@ const App = () => {
             </Routes>
             <Login />
           </Suspense>
-        </ContextProvider>
+        </DataContextProvider>
         </AuthContextProvider>
       </AppContextProvider>
     </div>
