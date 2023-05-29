@@ -2,7 +2,7 @@
 /server/node_modules
 /server/dist
 /server/.env
-
+/server/uploads
 # Ignore files in the client directory
 /client/node_modules
 /client/build
