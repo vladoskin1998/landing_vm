@@ -11,6 +11,10 @@ export class Comments {
 
   @Prop()
   comment: string;
+  
+
+  @Prop({ default: Date.now }) 
+  createdAt: Date;
 }
 
 export const CommentsSchema = SchemaFactory.createForClass(Comments);

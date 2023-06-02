@@ -41,7 +41,7 @@ export class PostsController {
       },
     ]),
   )
-  async addPosts(@UploadedFiles() binary, @Body() dto: PostDto) {
+  async addPost(@UploadedFiles() binary, @Body() dto: PostDto) {
     console.log(binary);
     console.log(dto);
 
@@ -53,12 +53,13 @@ export class PostsController {
       images,
       bgFolderImages,
     });
-    return { message: 'File downloaded' };
+    return { message: 'Post successfull download' };
   }
 
   @UseGuards(JwtAuthGuard)
   @Post('delete-posts')
-  async deletePosts(@Body() { id }: { id: string }) {
-    //  return await this.postsService.deleteFolder(id);
+  async deletePost(@Body() { id }: { id: string }) {
+     await this.postsService.deletePost(id);
+     return { message: 'Post successfull delete' };
   }
 }

@@ -1,0 +1,46 @@
+{
+    "header":{
+        "menu_list": "Acasă | Despre noi | Servicii | De vânzare | Închiriere | Recenzii | Contactați",
+        "cont":"Contactați"
+    },
+    "about": {
+        "title": "Despre noi",
+        "subtitle": "Estate Agency a fost fondată de profesioniști care se află la baza pieței imobiliare bulgare. Inițial, o companie de încredere care aderă la cea mai bună politică de preț pentru clienții săi.",
+        "main": "Principiile principale ale activității noastre sunt:",
+        "submain":"Oferirea unui serviciu de calitate clienților noștri | Oferim o gamă largă de proprietăți atractive | Ajutați clientul să înțeleagă toată varietatea | Oferiți totul la prețuri atractive",
+        "foot": "Viziunea noastră este de a deveni cea mai de încredere și respectată agenție imobiliară din Plovdiv."
+    },
+    "service": {
+      "title": "Servicii",
+      "list": "Examinarea documentelor de proprietate prezentate de către client pentru vânzare | Executarea și înregistrarea contractelor civile cu bunuri imobile | Consultanță în chestiuni legate de piața imobiliară | Asistență în vânzarea și cumpărarea unei proprietăți | Găsirea unui potențial cumpărător pentru proprietatea clientului | Sprijinirea vânzării și cumpărării unei proprietăți | Servicii de intermediere pentru închirierea unei proprietăți | Organizarea unei vizionări (prezentare) a proprietății | Intrarea în posesia unei parcele de teren | Înregistrarea transferului de proprietate | Sprijin promoțional"
+    },
+    "properties": {
+        "sale": "Proprietate de vânzare",
+        "rent": "Închiriere de proprietăți"
+    },
+    "reviews": {
+        "title": "Recenzii",
+        "main": "Clienți fericiți",
+        "foot": "Mulțumită vouă, devenim oameni mai buni!",
+        "viewmore": "Vezi mai mult",
+        "leavereview": "Lasă o recenzie",
+        "name": "Numele dumneavoastră",
+        "comment":"Feedback-ul dumneavoastră"
+    },
+    "footer":{
+        "title1": "Timp de lucru",
+        "title2": "Contactați",
+        "day": "De luni până vineri",
+        "time": "09:00 - 18:00",
+        "weekend": "Sâmbătă, duminică",
+        "weekend1":" numai cu programare",
+        "socmed": "Social media",
+        "pnnum": "Număr de telefon",
+        "dev": "dezvoltarea site-ului web"
+    },
+    "slide":{
+        "area":"Цялата зона",
+        "price":"Цена",
+        "city":"Град"
+    }
+  }

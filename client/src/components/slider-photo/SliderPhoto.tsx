@@ -13,9 +13,10 @@ import { HREF } from "../../utils/constants";
 import { PostsInterface, AdditionalFieldType } from "../../types/types";
 import { $api } from "../../api/api";
 import { AxiosResponse } from 'axios';
+import { PostsTypeTag } from "../../types/types";
+import { useTranslation } from "react-i18next";
 
-
-const SliderPhoto = () => {
+const SliderPhoto = ({ postTag }: { postTag: PostsTypeTag }) => {
 
   const navigate = useNavigate()
 
@@ -25,7 +26,7 @@ const SliderPhoto = () => {
 
   const refSlick = useRef<Slider>(null);
   const [count, setCount] = useState(1)
-
+  const { t } = useTranslation();
 
   useEffect(() => {
     $api.post("/posts/get-one-post", { _id: setId })
@@ -55,10 +56,10 @@ const SliderPhoto = () => {
       <div className="media__nav">
         <div className="media__nav-slider">
           <Logo />
-          <div> {count}/8</div>
+          <div> {count}/{(post?.images?.length || 0)}</div>
         </div>
         <div className="media__nav-text">
-          <h5>Properties for Sale</h5>
+          <h5>{t(`properties.${postTag}`)}</h5>
           <ButtonClose onClick={() => navigate(-1)} />
         </div>
       </div>
@@ -80,9 +81,9 @@ const SliderPhoto = () => {
         </div>
 
         <div className="media__info">
-          <h6>Обща площ: {post?.area}</h6>
-          <h6>Цена: {post?.price}</h6>
-          <h6>Город:  {post?.district}, {post?.city}</h6>
+          <h6>{t('slide.area')}: {post?.area}</h6>
+          <h6>{t('slide.price')}: {post?.price}</h6>
+          <h6>{t('slide.city')}: {post?.district}, {post?.city}</h6>
           {
             post?.additionalFields?.length
               ? JSON.parse(post?.additionalFields).map((it: AdditionalFieldType, index: number) =>
@@ -92,14 +93,15 @@ const SliderPhoto = () => {
           <p className="media__info-desc">
             {moreButton
               ? post?.description
-              : post?.description?.slice(0, 200) + (post?.description.length ? "..." : '')}
+              : post?.description?.slice(0, 200) + ((post?.description.length || 0) as number > 200 ? "..." : '')}
           </p>
           {
-            !moreButton && <div className="media__info-more" onClick={() => setMoreButton(true)}>
-              <ButtonMore />
-            </div>
+            (moreButton || (post?.description.length || 0) as number < 200)
+              ? <></>
+              : <div className="media__info-more" onClick={() => setMoreButton(true)}>
+                <ButtonMore />
+              </div>
           }
-
           <HeaderContact />
         </div>
       </div>

@@ -1,11 +1,8 @@
-import React, { useState, useContext, useRef, useEffect } from 'react';
+import React, { useState, useContext, useRef } from 'react';
 import { AdditionalFields } from './AdditionalFields';
 import { $api } from '../../../api/api';
-import { PostField as fields } from '../../../utils/constants';
-// import { dataUpload } from '../../utils/componentParams';
 import { firstUpperLetter } from '../../../utils/methods'
 import { FilesList } from './FileList';
-import { REALTY } from '../../../types/enum'
 import { PostsTypeTag, AdditionalFieldType } from '../../../types/types';
 import { AuthContext } from '../../../context/AuthContext';
 import { AppContext } from '../../../context/AppContext';
@@ -14,9 +11,6 @@ import { FormatImages } from '../../../utils/constants';
 
 
 export const ModalAdd = ({ postTag }: { postTag: PostsTypeTag }) => {
-
-	console.log("postTag--->", postTag);
-	
 
 	const { setLoader } = useContext(AppContext)
 	const { setIsAuth } = useContext(AuthContext);
@@ -70,8 +64,6 @@ export const ModalAdd = ({ postTag }: { postTag: PostsTypeTag }) => {
 			return 0
 		}
 
-
-
 		try {
 			setLoader(true)
 			await $api.post('posts/add-posts', formData, {
@@ -112,11 +104,6 @@ export const ModalAdd = ({ postTag }: { postTag: PostsTypeTag }) => {
 			Array.from(bgFiles).filter((el, index) => index !== i),
 		);
 	};
-
-	console.log(open);
-
-
-
 
 	return (
 		<>

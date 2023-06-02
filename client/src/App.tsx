@@ -8,6 +8,7 @@ import { DataContextProvider } from './context/DataContext';
 import { Login } from './components/admin/login';
 import { AppContextProvider } from './context/AppContext';
 import { AuthContextProvider } from './context/AuthContext';
+import { REALTY } from './types/enum';
 const App = () => {
 
   const refApp = useRef(null)
@@ -21,10 +22,10 @@ const App = () => {
             <Routes>
               <Route path='/' element={<Main />} />
               <Route path="photos-rent">
-                <Route path=':setId' element={<SliderPhoto />} />
+                <Route path=':setId' element={<SliderPhoto postTag={REALTY.RENT}/>} />
               </Route>
               <Route path="photos-sale">
-                <Route path=':setId' element={<SliderPhoto />} />
+                <Route path=':setId' element={<SliderPhoto postTag={REALTY.SALE}/>} />
               </Route>
               <Route path='*' element={<NoMatch />} />
             </Routes>

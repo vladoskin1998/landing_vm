@@ -24,13 +24,13 @@ export interface PostsInterface extends RequiredPostFileds {
 }
 
 export type CommentsType = {
+    _id:string
     name: string
     comment: string
 }
 
 
-export type DeviceType = "pc" | "mobile" | "tablet"
-
+export type DeviceType = "pc" | "mob" 
 export type DecodedToken = {
     exp: number
 }

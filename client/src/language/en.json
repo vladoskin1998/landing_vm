@@ -1,0 +1,46 @@
+{
+    "header":{
+        "menu_list": "Home | About | Services | Sale | Rent | Reviews | Contacts",
+        "cont":"Contacts"
+    },
+    "about": {
+        "title": "About us",
+        "subtitle": "Estate Agency was founded by professionals who are at the origins of the Bulgarian real estate market. Originally a reliable company, which adheres to the best pricing policy for its clients.",
+        "main": "The main principles of our work:",
+        "submain":"Offer quality service to our clients | Provide a wide range of attractive properties | Help the customer understand all the variety | Offer everything at attractive prices",
+        "foot": "Our vision is to be the most trusted and respected real Estate Agency in Plovdiv "
+    },
+    "service": {
+      "title": "Services",
+      "list": "Examination of documents for the real estate property presented by the client for sale | Execution and registration of civil contracts with real estate | Consulting on questions related to the real estate market | Assisting in selling the property | Search for a potential buyer for the client's real estate | Assistance in real estate sale and purchase transactions | Mediation services for renting the real estate | Organization of a viewing (showing) of the real estate object | Registration of the ownership of the land | Registration of the transfer of title | Advertising support"
+    },
+    "properties": {
+        "sale":"Properties for Sale",
+        "rent":"Properties for Rent"
+    },
+    "reviews": {
+        "title": "Reviews",
+        "main": "Happy Clients",
+        "foot": "Thanks to you we are becoming better!",
+        "viewmore": "View more",
+        "leavereview": "Leave a review",
+        "name": "Your name",
+        "comment":"Your review"
+    },
+    "footer":{
+        "title1": "Business Hours",
+        "title2": "Contacts",
+        "day": "Monday - Friday",
+        "time": "09:00 am - 06:00 pm",
+        "weekend": "Saturday, Sunday ",
+        "weekend1":"by appointment only",
+        "socmed": "Social media",
+        "pnnum": "Phone Number",
+        "dev": "website development"
+    },
+    "slide":{
+        "city":"City",
+        "area":"Total area",
+        "price":"Price"
+    }
+  }

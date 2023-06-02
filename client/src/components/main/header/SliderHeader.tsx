@@ -6,8 +6,8 @@ const SliderHeader = () => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            setCount(prevCount => (prevCount + 1) % 3);
-        }, 3000); 
+            setCount(prevCount => (prevCount + 1) % 4);
+        }, 4000); 
 
         return () => {
             clearInterval(interval); 
@@ -17,12 +17,12 @@ const SliderHeader = () => {
     return (
         <div className="slider">
             {
-                [0, 1, 2].map(item => {
+                [0, 1, 2, 3].map(item => {
                     let classN = ''
                     if (item === count) {
                         classN = 'current'
                     }
-                    if (item === (count + 1) % 3) {
+                    if (item === (count + 1) % 4) {
                         classN = 'next'
                     }
                     return <div key={item} className={classN + ' slide style--image'} ></div>
