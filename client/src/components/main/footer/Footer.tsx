@@ -35,33 +35,27 @@ const Footer = () => {
             <div>
               <h6>{t('footer.pnnum')}</h6>
               <p>+3596608802</p>
-              {
+              <a href="tg://@VeronykaMyronova" target='_blank'>telegram</a>
+              <a href={
                 device === 'pc'
-                  ? <>
-                    <a href="https://t.me/имя_пользователя">telegram</a>
-                    <a href="https://msng.link/vi/+3596608802">viber</a>
-
-                  </>
-                  : <>
-                    <a href="tg://resolve?domain=имя_пользователя">telegram</a>
-                    <a href="viber://chat?number=номер_телефона">viber</a>
-                  </>
-              }
-
+                  ? "https://msng.link/vi/359896608802"
+                  : "viber://chat?number=359896608802"}
+                target='_blank'>
+                viber
+              </a>
             </div>
             <div className='footer__contact-links_dev'>
               <a className='hover-link'>
                 {t('footer.dev')} <Line />
               </a>
-              {
+              <a className='footer__contact-links_viber' href={
                 device === 'pc'
-                  ? <a className='footer__contact-links_viber' href="https://msng.link/vi/3596608802">
-                    <Message />
-                  </a>
-                  : <a className='footer__contact-links_viber' href="viber://chat?number=3596608802">
-                    <Message />
-                  </a>
-              }
+                  ? "https://msng.link/vi/359896608802"
+                  : "viber://chat?number=359896608802"
+              }>
+                <Message />
+              </a>
+
             </div>
           </div>
         </div>
