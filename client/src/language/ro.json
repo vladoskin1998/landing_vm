@@ -25,14 +25,16 @@
         "viewmore": "Vezi mai mult",
         "leavereview": "Lasă o recenzie",
         "name": "Numele dumneavoastră",
-        "comment":"Feedback-ul dumneavoastră"
+        "comment":"Feedback-ul dumneavoastră",
+        "alert-name": "Numele câmpului este gol",
+        "alert-comment":"Câmpul de examinare este gol"
     },
     "footer":{
         "title1": "Timp de lucru",
         "title2": "Contactați",
         "day": "De luni până vineri",
         "time": "09:00 - 18:00",
-        "weekend": "Sâmbătă, duminică",
+        "weekend": "Sâmbătă, Duminică",
         "weekend1":" numai cu programare",
         "socmed": "Social media",
         "pnnum": "Număr de telefon",

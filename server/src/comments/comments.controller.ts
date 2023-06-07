@@ -19,7 +19,7 @@ export class CommentsController {
   @UseGuards(JwtAuthGuard)
   @Post('delete-comment')
   async deleteComment(@Body() { id }: { id: string }) {
-    await this.commentsService.deleteComment({ id });
-    return { message: 'Comment delete' };
+    const currenListComment = await this.commentsService.deleteComment({ id });
+    return { message: 'Comment delete', currenListComment };
   }
 }

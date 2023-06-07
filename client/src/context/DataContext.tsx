@@ -37,7 +37,7 @@ const DataContextProvider = ({ children }: { children: ReactNode }) => {
         }
     )
   
-console.log(isTag);
+console.log(listComment);
 
 
     useEffect(() => {
@@ -69,10 +69,10 @@ console.log(isTag);
     const deletePost = (id: string) => {
         setLoader(true)
         $api.post('/posts/delete-posts', { id })
-            .then((r: AxiosResponse<{ message: string }>) => {
-                setLoader(true)
+            .then((r: AxiosResponse<{ message: string, currentListPost:PostsInterface[] }>) => {
+                setLoader(false)
+                setListPost(r.data.currentListPost)
                 alert(r.data.message)
-                window.location.reload();
             })
             .catch((error) => {
                 setLoader(false)
@@ -84,10 +84,10 @@ console.log(isTag);
     const deleteComment = (id: string) => {
         setLoader(true)
         $api.post('/comments/delete-comment', { id })
-            .then((r: AxiosResponse<{ message: string }>) => {
-                setLoader(true)
+            .then((r: AxiosResponse<{ message: string, currenListComment: CommentsType[] }>) => {
+                setLoader(false)
+                setListComment(r.data.currenListComment)
                 alert(r.data.message)
-                window.location.reload();
             })
             .catch((error) => {
                 setLoader(false)

@@ -23,6 +23,7 @@ export class CommentsService {
 
  
   async deleteComment({ id }: { id: string }) {
-    return await this.commentsModel.findByIdAndDelete({ _id: id });
+    await this.commentsModel.findByIdAndDelete({ _id: id });
+    return this.getComments()
   }
 }

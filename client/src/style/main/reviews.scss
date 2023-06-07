@@ -122,7 +122,15 @@
             border: none;
             border-bottom: 1px solid $color_orange1;
             padding: 0 0 4px 0px;
-
+            &-wrap{
+                position: relative;
+            }
+            &--alert{
+                position: absolute;
+                top: 23px;
+                left: 0;
+                color: $color_red1;
+            }
             &::placeholder {
                 color: $color_orange3;
             }

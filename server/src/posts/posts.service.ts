@@ -27,7 +27,7 @@ export class PostsService {
       _id: id,
     });
     await this.deleteFiles([...images, bgFolderImages]);
-    return { message: 'Folder is deleted' };
+    return this.getPosts()
   }
 
   async deleteFiles(arr: string[]): Promise<void> {

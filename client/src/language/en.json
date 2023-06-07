@@ -25,7 +25,9 @@
         "viewmore": "View more",
         "leavereview": "Leave a review",
         "name": "Your name",
-        "comment":"Your review"
+        "comment":"Your review",
+        "alert-name": "Field name is empty",
+        "alert-comment":"Review field is empty"
     },
     "footer":{
         "title1": "Business Hours",

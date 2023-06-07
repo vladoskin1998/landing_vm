@@ -59,7 +59,7 @@ export class PostsController {
   @UseGuards(JwtAuthGuard)
   @Post('delete-posts')
   async deletePost(@Body() { id }: { id: string }) {
-     await this.postsService.deletePost(id);
-     return { message: 'Post successfull delete' };
+     const currentListPost = await this.postsService.deletePost(id);
+     return { message: 'Post successfull delete', currentListPost };
   }
 }
