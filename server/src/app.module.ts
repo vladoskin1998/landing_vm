@@ -11,6 +11,7 @@ import { join } from 'path';
   imports: [
     ConfigModule.forRoot({
        envFilePath: 'ecosystem.config.js',
+       isGlobal: true,
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],

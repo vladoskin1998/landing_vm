@@ -6,15 +6,12 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtAuthGuard } from './authentication.guard';
 import { AuthenticationService } from './authentication.service';
 import { AuthenticationController } from './authentication.controller';
-import '../../'
+
 @Module({
   imports: [
     MongooseModule.forFeature([
       { name: Authentication.name, schema: AuthenticationSchema },
     ]),
-    ConfigModule.forRoot({
-      envFilePath: 'ecosystem.config.js',
-   }),
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
