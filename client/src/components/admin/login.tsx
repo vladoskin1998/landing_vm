@@ -7,8 +7,8 @@ export const Login = () => {
 	const modalRef = useRef<HTMLDivElement>(null);
 	const [showModal, setShowModal] = useState(false);
 
-	const [login, setLogin] = useState('Veronika');
-	const [password, setPassword] = useState('VeronRealty1221');
+	const [login, setLogin] = useState('');
+	const [password, setPassword] = useState('');
 
 	const { device } = useContext(AppContext);
 
