@@ -30,7 +30,8 @@
                 cursor: pointer;
                 height: 320px;
                 position: relative;
-
+                object-fit: contain; 
+                object-position: center; 
                 &:hover::after {
                     display: flex;
                     justify-content: center;
