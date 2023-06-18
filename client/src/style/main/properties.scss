@@ -30,7 +30,7 @@
                 cursor: pointer;
                 height: 320px;
                 position: relative;
-                object-fit: contain; 
+                object-fit: cover; 
                 object-position: center; 
                 &:hover::after {
                     display: flex;
@@ -55,7 +55,7 @@
                     transition: opacity 0.5s; /* Плавный переход для opacity */
                     z-index: 3;
                 }
-                background: bisque;
+                background: $color_green;
             }
             &_info {
                 margin-top: 30px;
