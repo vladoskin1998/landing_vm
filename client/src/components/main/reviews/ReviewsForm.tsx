@@ -64,13 +64,14 @@ const ReviewsForm = () => {
                                 <h4 className="reviews__modal-content_input--alert">{alertName ? t('reviews.alert-name') : ""}</h4>
                             </div>
                             <div className="reviews__modal-content_input-wrap">
-                                <input type="text"
+                                <textarea rows={4}
+                                maxLength={200}
                                     placeholder={t('reviews.comment') as string}
-                                    className='reviews__modal-content_input'
+                                    className='reviews__modal-content_input reviews__modal-content_textarea'
                                     value={comment}
                                     onChange={(e) => handlerChangeComment(e.target.value)}
                                 />
-                                <h4 className="reviews__modal-content_input--alert">{alertComment ? t('reviews.alert-comment') : ""}</h4>
+                                <h4 className="reviews__modal-content_textarea--alert">{alertComment ? t('reviews.alert-comment') : ""}</h4>
                             </div>
                             <button className='reviews__button reviews__modal-content-ok'
                                 onClick={handlerAddComment}

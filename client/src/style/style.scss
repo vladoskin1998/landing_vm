@@ -14,7 +14,12 @@ a:visited {
   color: inherit; /* Наследование цвета текста */
   text-decoration: none; /* Удаление подчеркивания */
 }
-
+textarea:focus {
+  outline: none;
+}
+textarea {
+  resize: none;
+}
 a:hover,
 a:focus,
 a:active {
