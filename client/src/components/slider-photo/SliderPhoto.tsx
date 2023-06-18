@@ -67,7 +67,7 @@ const SliderPhoto = ({ postTag }: { postTag: PostsTypeTag }) => {
         <div className="media__slider ">
           <Slider {...settings} ref={refSlick}>
             {
-              post?.images.map((it, index) => <img src={`${HREF}uploads/${it})`} key={index} />)
+              post?.images.map((it, index) => <img src={`${HREF}uploads/${it}`} key={index} />)
             }
           </Slider>
           <div className="media__slider-nav">
