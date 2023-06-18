@@ -33,7 +33,7 @@
         justify-content: center;
         .slick-initialized{
             height: 100%;
-            background-color: red;
+            background-color: $color_green ;
         }
         &-nav{
             margin-top: 36px;
@@ -67,6 +67,11 @@
             flex-grow: 1;
         }
     }
+    &__item-image {
+        height: 637px;
+        object-fit: cover; /* Масштабирование картинки с сохранением пропорций и обрезкой лишней части */
+        object-position: center; /* Центрирование картинки по горизонтали и вертикали */
+      }
 
 }
 
@@ -104,6 +109,11 @@
                 margin-bottom: 50px;
             }
         }
+           &__item-image {
+        height: 257px;
+        object-fit: cover; /* Масштабирование картинки с сохранением пропорций и обрезкой лишней части */
+        object-position: center; /* Центрирование картинки по горизонтали и вертикали */
+      }
     }
 }
 
