@@ -13,7 +13,7 @@ import '../../'
       { name: Authentication.name, schema: AuthenticationSchema },
     ]),
     ConfigModule.forRoot({
-      envFilePath: '../../ecosystem.config.js',
+      envFilePath: '../ecosystem.config.js',
    }),
     JwtModule.registerAsync({
       imports: [ConfigModule],
