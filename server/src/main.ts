@@ -6,7 +6,7 @@ async function bootstrap() {
 
   app.setGlobalPrefix('api');
   app.enableCors({
-    origin: ['http://localhost:3000', 'https://prod.com'],
+    origin: ['http://localhost:3000', 'https://vmestateplovdiv.com', "http://vmestateplovdiv.com"],
     methods: 'GET,POST,DELETE',
   });
   await app.listen(5001);
