@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module, Logger } from '@nestjs/common';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { PostsModule } from './posts/posts.module';
 import { CommentsModule } from './comments/comments.module';
@@ -15,10 +15,14 @@ import { join } from 'path';
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: async (configService: ConfigService) => ({
+      useFactory: async (configService: ConfigService) => {
+        const uri = configService.get('MONGO_URI'); // Получение значения uri
+        // Логирование значения uri
+        console.log(`MongoDB URI-------->: ${uri}`);
+        return {
         uri: configService.get('MONGO_URI'),
         dbName: 'bd_vm',
-      }),
+      }},
     }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'client'),
@@ -29,4 +33,6 @@ import { join } from 'path';
     CommentsModule,
   ],
 })
-export class AppModule {}
+export class AppModule {
+   private logger = new Logger(AppModule.name);
+}
