@@ -34,7 +34,7 @@ const Footer = () => {
           <div className='footer__contact-links'>
             <div>
               <h6>{t('footer.pnnum')}</h6>
-              <p>+3596608802</p>
+              <p>+359896608802</p>
               <a href="tg://@VeronykaMyronova" target='_blank'>telegram</a>
               <a href={
                 device === 'pc'

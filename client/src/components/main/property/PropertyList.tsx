@@ -31,7 +31,7 @@ const PropertyList = ({ list, postTag }: { list: PostsInterface[], postTag: Post
                         </button>
                     }
                     <img
-                        src={`${HREF}uploads/${it.bgFolderImages})`}
+                        src={`${HREF}uploads/${it.bgFolderImages}`}
                         className='style--image' onClick={() => navigateToSlider(it._id)}
                     />
                     <div className="properties__list-item_info">

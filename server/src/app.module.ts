@@ -20,7 +20,7 @@ import { join } from 'path';
         const uri = configService.get('MONGO_URI'); // Получение значения uri
         console.log(`MongoDB URI-------->: ${uri}`);
         return {
-        uri: configService.get('MONGO_URI'),
+        uri: "mongodb://vlados:Vlados1998@127.0.0.1:27017/bd_vm" || configService.get('MONGO_URI'),
         dbName: 'bd_vm',
       }},
     }),
