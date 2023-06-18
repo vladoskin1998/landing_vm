@@ -7,7 +7,7 @@
         display: flex;
         column-gap: 80px;
         padding-bottom: 30px;
-        &>div{
+        & > div {
             display: flex;
             justify-content: space-between;
             align-items: flex-end;
@@ -19,7 +19,7 @@
             flex-grow: 1;
         }
     }
-    &__wrap_content{
+    &__wrap_content {
         display: flex;
         column-gap: 80px;
     }
@@ -31,90 +31,91 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        .slick-initialized{
+        .slick-initialized {
             height: 100%;
-            background-color: $color_green ;
+            background-color: $color_green;
         }
-        &-nav{
+        &-nav {
             margin-top: 36px;
             display: flex;
             justify-content: center;
             column-gap: 60px;
         }
     }
-    &__info{
+    &__info {
         padding-top: 50px;
         display: flex;
         flex-direction: column;
-        &-desc{
+        &-desc {
             padding-top: 30px;
             word-wrap: break-word;
             word-break: break-all;
         }
-        .reviews__list_button{
+        .reviews__list_button {
             position: static;
         }
-        .header__nav-buttons{
+        .header__nav-buttons {
             margin-top: 80px;
             margin-bottom: 56px;
             flex-direction: column;
             row-gap: 10px;
             font-size: 20px;
         }
-        &-more{
+        &-more {
             padding-top: 30px;
             text-align: end;
             flex-grow: 1;
         }
     }
     &__item-image {
-        height: 637px;
+        padding: 10px 0;
+        height: calc(100vh - 150px);
         object-fit: cover; /* Масштабирование картинки с сохранением пропорций и обрезкой лишней части */
         object-position: center; /* Центрирование картинки по горизонтали и вертикали */
-      }
-
+    }
 }
 
 @media only screen and (max-width: 1050px) {
     .media {
         padding: 12px 12px 50px 12px;
-        &__nav{
+        &__nav {
             position: relative;
-            &-slider{
-                &>div{
+            &-slider {
+                & > div {
                     display: none;
                 }
             }
-            &-text{
-                h5{
+            &-text {
+                h5 {
                     position: absolute;
                     top: 100px;
                     left: 0;
                 }
             }
         }
-        &__wrap_content{
+        &__wrap_content {
             margin-top: 98px;
             flex-direction: column;
         }
-        &__slider{
+        &__slider {
             height: 257px;
-            &-nav{
+            &-nav {
                 display: none;
             }
         }
-        &__info{
+        &__info {
             padding-top: 30px;
-            &-more{
+            &-more {
                 margin-bottom: 50px;
             }
         }
-           &__item-image {
-        height: 257px;
-        object-fit: cover; /* Масштабирование картинки с сохранением пропорций и обрезкой лишней части */
-        object-position: center; /* Центрирование картинки по горизонтали и вертикали */
-      }
+        &__item-image {
+            height: 257px;
+            object-fit: cover; /* Масштабирование картинки с сохранением пропорций и обрезкой лишней части */
+            object-position: center; /* Центрирование картинки по горизонтали и вертикали */
+        }
     }
 }
 
-@media only screen and (max-width: 450px) {}
+@media only screen and (max-width: 450px) {
+}
