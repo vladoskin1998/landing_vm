@@ -1,0 +1,30 @@
+{
+  "files": {
+    "main.css": "./static/css/main.e910c5c0.css",
+    "main.js": "./static/js/main.f7545533.js",
+    "static/media/slider2.jpg": "./static/media/slider2.9e183133c4299704e152.jpg",
+    "static/media/slider4.jpg": "./static/media/slider4.80c6c44ff6eed5906af5.jpg",
+    "static/media/services.jpg": "./static/media/services.fb16b3d5efb8d89b780d.jpg",
+    "static/media/slider3.jpg": "./static/media/slider3.96334c310233e66570e6.jpg",
+    "static/media/slider1.jpg": "./static/media/slider1.bcfd77d220917be957c5.jpg",
+    "static/media/about2.jpg": "./static/media/about2.a9c113cd4e922445f197.jpg",
+    "static/media/CeraProRegular.otf": "./static/media/CeraProRegular.8892f7774476d2508d9e.otf",
+    "static/media/GeorgiaRegular.ttf": "./static/media/GeorgiaRegular.af2a95bc538f7e044915.ttf",
+    "static/media/about1.jpg": "./static/media/about1.7e4e1aaad95b9a12ba5f.jpg",
+    "static/media/ro-mob.png": "./static/media/ro-mob.630477337a1e27fddb6e.png",
+    "static/media/bg-mob.png": "./static/media/bg-mob.7cb9ce1f0c2fbaa187e9.png",
+    "static/media/en.png": "./static/media/en.1c02b4de3abbb50e6ea8.png",
+    "static/media/en-mob.png": "./static/media/en-mob.577d7bead781fa352bec.png",
+    "static/media/ru-mob.png": "./static/media/ru-mob.9cc6941d7426ef130943.png",
+    "static/media/ro.png": "./static/media/ro.37c350b49c926076352b.png",
+    "static/media/bg.png": "./static/media/bg.c8da9bab1997b068a7a5.png",
+    "static/media/ru.png": "./static/media/ru.47efab0e39cc625c7a4d.png",
+    "index.html": "./index.html",
+    "main.e910c5c0.css.map": "./static/css/main.e910c5c0.css.map",
+    "main.f7545533.js.map": "./static/js/main.f7545533.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e910c5c0.css",
+    "static/js/main.f7545533.js"
+  ]
+}
