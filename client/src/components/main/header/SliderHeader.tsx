@@ -7,7 +7,7 @@ const SliderHeader = () => {
     useEffect(() => {
         const interval = setInterval(() => {
             setCount(prevCount => (prevCount + 1) % 4);
-        }, 4000); 
+        }, 5000); 
 
         return () => {
             clearInterval(interval); 
