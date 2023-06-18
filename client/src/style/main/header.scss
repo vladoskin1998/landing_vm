@@ -79,6 +79,9 @@
                 display: flex;
                 column-gap: 3.4vw;
             }
+            &-logo{
+
+            }
         }
         &-titles {
             height: 200px;
@@ -276,7 +279,7 @@
             }
             &-messanger {
                 align-self: flex-start;
-                grid-template-columns: 1fr auto 1fr;
+                grid-template-columns: 1fr auto 1fr; 
             }
             &-titles {
                 &_title {
@@ -307,11 +310,11 @@
             }
             &-messanger{
                 margin-top: 15px;
-             
                 display: flex;
                 column-gap: 20px;
             }
             &-logo{
+            
                 display: block;
             }
         }
