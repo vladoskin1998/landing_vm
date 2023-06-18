@@ -10,7 +10,7 @@ import { join } from 'path';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: '.env',
+      envFilePath: 'ecosystem.config.js',
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
