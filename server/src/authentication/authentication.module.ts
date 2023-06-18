@@ -17,13 +17,15 @@ import { AuthenticationController } from './authentication.controller';
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => {
-        console.log("JWT_SECRET------>",configService.get('JWT_SECRET'));
-        
-        
-        return{
-        secret: configService.get('JWT_SECRET'),
-        signOptions: { expiresIn: '1d' },
-      }},
+        const uri = configService.get('JWT_SECRET');
+
+        console.log('JWT_SECRET------>', configService.get('JWT_SECRET'));
+
+        return {
+          secret: configService.get('JWT_SECRET'),
+          signOptions: { expiresIn: '1d' },
+        };
+      },
     }),
   ],
   controllers: [AuthenticationController],
