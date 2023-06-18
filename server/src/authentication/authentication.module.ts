@@ -12,7 +12,7 @@ import { AuthenticationController } from './authentication.controller';
     MongooseModule.forFeature([
       { name: Authentication.name, schema: AuthenticationSchema },
     ]),
-    ConfigModule.forRoot(),
+    ConfigModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
