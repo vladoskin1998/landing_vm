@@ -16,10 +16,14 @@ import { AuthenticationController } from './authentication.controller';
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: async (configService: ConfigService) => ({
+      useFactory: async (configService: ConfigService) => {
+        console.log("JWT_SECRET------>",configService.get('JWT_SECRET'));
+        
+        
+        return{
         secret: configService.get('JWT_SECRET'),
         signOptions: { expiresIn: '1d' },
-      }),
+      }},
     }),
   ],
   controllers: [AuthenticationController],
