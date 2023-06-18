@@ -11,14 +11,12 @@ import { join } from 'path';
   imports: [
     ConfigModule.forRoot({
        envFilePath: 'ecosystem.config.js',
-    
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => {
         const uri = configService.get('MONGO_URI'); // Получение значения uri
-        // Логирование значения uri
         console.log(`MongoDB URI-------->: ${uri}`);
         return {
         uri: configService.get('MONGO_URI'),

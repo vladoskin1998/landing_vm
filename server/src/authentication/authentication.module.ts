@@ -6,28 +6,25 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { JwtAuthGuard } from './authentication.guard';
 import { AuthenticationService } from './authentication.service';
 import { AuthenticationController } from './authentication.controller';
-
+import '../../'
 @Module({
   imports: [
     MongooseModule.forFeature([
       { name: Authentication.name, schema: AuthenticationSchema },
     ]),
     ConfigModule.forRoot({
-      envFilePath: 'ecosystem.config.js'
-    }),
+      envFilePath: '../../ecosystem.config.js',
+   }),
     JwtModule.registerAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: async (configService: ConfigService) => {
-        const uri = configService.get('JWT_SECRET');
-
-        console.log('JWT_SECRET------>', configService.get('JWT_SECRET'));
-
-        return {
-          secret: configService.get('JWT_SECRET'),
-          signOptions: { expiresIn: '1d' },
-        };
-      },
+        const uri = configService.get('JWT_SECRET'); // Получение значения uri
+        console.log(`JWT_SECRET-------->: ${uri}`);
+        return({
+        secret: configService.get('JWT_SECRET'),
+        signOptions: { expiresIn: '1d' },
+      })},
     }),
   ],
   controllers: [AuthenticationController],
