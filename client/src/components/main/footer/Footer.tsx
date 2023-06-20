@@ -34,12 +34,13 @@ const Footer = () => {
           <div className='footer__contact-links'>
             <div>
               <h6>{t('footer.pnnum')}</h6>
-              <p>+359896608802</p>
+              <a href="tel:+359896608802">+359896608802</a>
               <a href="tg://@VeronykaMyronova" target='_blank'>telegram</a>
-              <a href={
-                device === 'pc'
-                  ? "https://msng.link/vi/359896608802"
-                  : "viber://chat?number=359896608802"}
+              <a href={"https://invite.viber.com/?g=wNM1wN-gNFFLCmTNh7NTjFwvAGRa0pU1"
+                // device === 'pc'
+                //   ? "https://msng.link/vi/359896608802"
+                //   : "viber://chat?number=359896608802"
+                }
                 target='_blank'>
                 viber
               </a>
@@ -49,10 +50,13 @@ const Footer = () => {
                 {t('footer.dev')} <Line />
               </a>
               <a className='footer__contact-links_viber' href={
-                device === 'pc'
-                  ? "https://msng.link/vi/359896608802"
-                  : "viber://chat?number=359896608802"
-              }>
+                "https://invite.viber.com/?g=wNM1wN-gNFFLCmTNh7NTjFwvAGRa0pU1"
+                // device === 'pc'
+                //   ? "https://msng.link/vi/359896608802"
+                //   : "viber://chat?number=359896608802"
+              }
+              target='_blank'
+              >
                 <Message />
               </a>
 

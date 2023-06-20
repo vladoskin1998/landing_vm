@@ -1,7 +1,6 @@
 import { useContext } from "react"
 import { AppContext } from "../../../context/AppContext"
 
-
 export const HeaderNavTitles = () => {
     const { language, device } = useContext(AppContext)
     return (

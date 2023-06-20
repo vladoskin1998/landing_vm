@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { ButtonClose } from '../../ui/ButtonClose';
 import { DataContext } from '../../../context/DataContext';
 import { useTranslation } from 'react-i18next';
+import TextareaAutosize from 'react-textarea-autosize';
 
 const ReviewsForm = () => {
 
@@ -23,6 +24,11 @@ const ReviewsForm = () => {
         else {
             setClassN("reviews__modal-enter")
         }
+        return () => {
+            setAlertName(false)
+            setAlertComment(false)
+            setComment('')
+        }
     }, [open]);
 
     const handlerAddComment = async () => {
@@ -35,14 +41,20 @@ const ReviewsForm = () => {
     }
 
     const handlerChangeName = (s: string) => {
-        setAlertName(!s.length)
+        setAlertName(!s.replace(/[\n\s]/g, "").length)
         setName(s)
     }
 
     const handlerChangeComment = (s: string) => {
-        setAlertComment(!s.length)
+        console.log(s.replace(/\n/g, "").length);
+        
+        setAlertComment(!s.replace(/[\n\s]/g, "").length)
         setComment(s)
     }
+
+
+    console.log("comment--->", comment);
+    
 
     return (
         <>
@@ -64,12 +76,12 @@ const ReviewsForm = () => {
                                 <h4 className="reviews__modal-content_input--alert">{alertName ? t('reviews.alert-name') : ""}</h4>
                             </div>
                             <div className="reviews__modal-content_input-wrap">
-                                <textarea rows={4}
-                                maxLength={200}
+                                <TextareaAutosize className='reviews__modal-content_input reviews__modal-content_textarea'
                                     placeholder={t('reviews.comment') as string}
-                                    className='reviews__modal-content_input reviews__modal-content_textarea'
+                                    maxLength={300}
                                     value={comment}
                                     onChange={(e) => handlerChangeComment(e.target.value)}
+                                    maxRows={6}
                                 />
                                 <h4 className="reviews__modal-content_textarea--alert">{alertComment ? t('reviews.alert-comment') : ""}</h4>
                             </div>

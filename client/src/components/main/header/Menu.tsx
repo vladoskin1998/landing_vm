@@ -44,7 +44,7 @@ const Menu = () => {
                     MENU_LIST[index] === 'Rent' && !isTag.rent
                         || MENU_LIST[index] === 'Sale' && !isTag.sale
                         ? <></>
-                        : <button key={it} className="menu__modal-link"
+                        : <button key={it} className="menu__modal-link" 
                             onClick={() => { scrollTo(MENU_LIST[index]) }}
                         >{it}</button>
                 ))}
