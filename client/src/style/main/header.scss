@@ -126,7 +126,6 @@
         &-buttons {
             display: flex;
             column-gap: 20px;
-
             & button {
                 width: 100%;
                 display: flex;
@@ -135,22 +134,27 @@
                 padding: 15px 82px;
                 border-radius: 50px;
                 border: 1px solid $color_orange1;
-                transition: background-color 0.5s, color 0.5s;
+            }
+        }
+        &-buttons__hover{
+            & button {
+            transition: background-color 0.5s, color 0.5s;
+            &:hover {
+                background-color: $color_orange1;
+                color: $color_black1;
+            }
+
+            &:last-child {
+                background-color: $color_orange1;
+                color: $color_black1;
+
                 &:hover {
-                    background-color: $color_orange1;
-                    color: $color_black1;
-                }
-
-                &:last-child {
-                    background-color: $color_orange1;
-                    color: $color_black1;
-
-                    &:hover {
-                        background-color: inherit;
-                        color: $color_orange1;
-                    }
+                    background-color: inherit;
+                    color: $color_orange1;
                 }
             }
+            }
+           
         }
     }
     &__slide_contact {

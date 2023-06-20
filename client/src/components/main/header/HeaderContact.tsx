@@ -19,7 +19,7 @@ const HeaderContact = () => {
     };
 
     return (
-        <div className='header__nav-buttons'>
+        <div className={`header__nav-buttons ${device === 'pc' ? "header__nav-buttons__hover" : ''}`}>
             <button onClick={() => { scrollTo("Contacts") }}>{t('header.cont')}</button>
             {
                 device === 'pc'
