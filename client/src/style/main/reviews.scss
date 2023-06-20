@@ -22,6 +22,7 @@
         width: 100%;
         margin: 0 auto;
         &-item {
+            overflow: hidden;
             &_gate {
                 display: flex;
                 column-gap: 30px;
