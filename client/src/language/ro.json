@@ -17,7 +17,7 @@
     "properties": {
         "sale": "Proprietate de vânzare",
         "rent": "Închiriere de proprietăți",
-        "own-object": "Личные обьекты"
+        "own": "Obiecte personale"
     },
     "reviews": {
         "title": "Recenzii",
