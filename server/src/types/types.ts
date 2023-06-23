@@ -1,19 +1,18 @@
 export enum REALTY {
-    SALE='sale',
-    RENT='rent'
+  SALE = 'sale',
+  RENT = 'rent',
+  OWN_OBJECT = 'own',
 }
 
-export type PostsTypeTag = REALTY.RENT | REALTY.SALE
-
+export type PostsTypeTag = REALTY.RENT | REALTY.SALE | REALTY.OWN_OBJECT;
 
 export class PostType {
-    area: string;
-    district: string;
-    city: string;
-    price: string | number;
-    additionalFields?: { label: string; value: string }[];
-    images: string[];
-    bgFolderImages: string;
-    tag: PostsTypeTag;
-  }
-  
+  area: string;
+  district: string;
+  city: string;
+  price: string | number;
+  additionalFields?: { label: string; value: string }[];
+  images: string[];
+  bgFolderImages: string;
+  tag: PostsTypeTag;
+}

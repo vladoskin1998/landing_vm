@@ -3,16 +3,20 @@ import { Burger } from "../../svg/Burger";
 import { ButtonClose } from "../../ui/ButtonClose";
 import Messanger from "./Messanger";
 import { Logo } from '../../svg/Logo'
-import { animateScroll as scroll, scroller } from 'react-scroll';
+import { scroller } from 'react-scroll';
 import { useTranslation } from 'react-i18next';
 import { MENU_LIST } from "../../../utils/constants";
 import { DataContext } from "../../../context/DataContext";
+import { AuthContext } from "../../../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Menu = () => {
 
     const [open, setOpen] = useState(false);
     const scrollerRef = useRef(scroller);
     const { isTag } = useContext(DataContext)
+    const { isAuth } = useContext(AuthContext)
+    const navigate = useNavigate()
 
     const options = {
         duration: 800,
@@ -44,10 +48,16 @@ const Menu = () => {
                     MENU_LIST[index] === 'Rent' && !isTag.rent
                         || MENU_LIST[index] === 'Sale' && !isTag.sale
                         ? <></>
-                        : <button key={it} className="menu__modal-link" 
+                        : <button key={it} className="menu__modal-link"
                             onClick={() => { scrollTo(MENU_LIST[index]) }}
                         >{it}</button>
                 ))}
+                {
+                    !isAuth
+                    || <button className="menu__modal-link" onClick={() => navigate('photos-own')}>
+                        Личные обьекты
+                    </button>
+                }
                 <div className="menu__modal-messanger">
                     <Messanger />
                 </div>

@@ -7,13 +7,12 @@ export const Login = () => {
 	const modalRef = useRef<HTMLDivElement>(null);
 	const [showModal, setShowModal] = useState(false);
 
+	//Veronika VeronRealty1221
+
 	const [login, setLogin] = useState('');
 	const [password, setPassword] = useState('');
-
 	const { device } = useContext(AppContext);
-
 	const { isAuth, loginAuth, logoutAuth } = useContext(AuthContext)
-
 
 	useEffect(() => {
 		const keysPressed: Record<string, boolean> = {};

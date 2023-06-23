@@ -5,6 +5,7 @@ import { Model } from 'mongoose';
 import { PostsTypeTag, PostType } from '../types/types';
 import * as fs from 'fs';
 import * as path from 'path';
+import { ChangeTagDto } from './posts.dto';
 
 @Injectable()
 export class PostsService {
@@ -14,12 +15,20 @@ export class PostsService {
     return await this.postsModel.find();
   }
 
-  async getPost(_id:string){
-    return await this.postsModel.findById(_id)
+  async getPost(_id: string) {
+    return await this.postsModel.findById(_id);
   }
 
   async addPost(post: PostType) {
     return await this.postsModel.create(post);
+  }
+
+  async changeTagPost(dto: ChangeTagDto) {
+    await this.postsModel.updateOne(
+      { _id: dto.id },
+      { $set: { tag: dto.tag } },
+    );
+    return this.getPosts();
   }
 
   async deletePost(id: string) {
@@ -27,7 +36,7 @@ export class PostsService {
       _id: id,
     });
     await this.deleteFiles([...images, bgFolderImages]);
-    return this.getPosts()
+    return this.getPosts();
   }
 
   async deleteFiles(arr: string[]): Promise<void> {

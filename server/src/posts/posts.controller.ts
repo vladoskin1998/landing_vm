@@ -10,7 +10,7 @@ import {
 import { PostsService } from './posts.service';
 import { JwtAuthGuard } from '../authentication/authentication.guard';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
-import { PostsTagDto, PostDto } from './posts.dto';
+import { PostsTagDto, PostDto, ChangeTagDto } from './posts.dto';
 
 @Controller('posts')
 export class PostsController {
@@ -55,6 +55,13 @@ export class PostsController {
     });
     return { message: 'Post successfull download' };
   }
+
+  @UseGuards(JwtAuthGuard)
+  @Post('change-tag-posts')
+  async ChangeTagPost(@Body() dto: ChangeTagDto) {
+    const currentListPost = await this.postsService.changeTagPost(dto);
+    return { message: 'Post tag successfull changed', currentListPost };
+ }
 
   @UseGuards(JwtAuthGuard)
   @Post('delete-posts')

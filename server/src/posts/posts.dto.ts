@@ -14,3 +14,9 @@ export class PostDto {
 export class PostsTagDto {
   tag: PostsTypeTag;
 }
+
+
+export class ChangeTagDto {
+  id: string;
+  tag: PostsTypeTag;
+}

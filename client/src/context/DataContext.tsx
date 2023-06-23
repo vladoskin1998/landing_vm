@@ -1,6 +1,6 @@
 import React, { createContext, useState, useContext, useEffect, type ReactNode, type RefObject } from 'react';
 import { $api } from '../api/api';
-import { PostsInterface, CommentsType } from '../types/types';
+import { PostsInterface, CommentsType, PostsTypeTag } from '../types/types';
 import { AxiosResponse } from 'axios';
 import { AppContext } from './AppContext';
 import { REALTY } from '../types/enum';
@@ -8,21 +8,22 @@ const DataContext = createContext<{
 
     listPost: PostsInterface[];
     listComment: CommentsType[];
-    isTag: {rent:boolean, sale:boolean}
+    isTag: { rent: boolean, sale: boolean, own: boolean }
     deletePost: (id: string) => void
     deleteComment: (id: string) => void
     addComment: (dto: { name: string, comment: string }) => Promise<void>
+    changeTagPost: (id: string, tag: PostsTypeTag) => void
 }>({
     listPost: [],
     listComment: [],
     deletePost: () => { },
     deleteComment: () => { },
+    changeTagPost: () => { },
     addComment: () => { return Promise.resolve(); },
-    isTag: {rent:false, sale:false},
+    isTag: { rent: false, sale: false, own: false },
 });
 
 const DataContextProvider = ({ children }: { children: ReactNode }) => {
-
 
     const { setLoader } = useContext(AppContext)
 
@@ -30,14 +31,15 @@ const DataContextProvider = ({ children }: { children: ReactNode }) => {
 
     const [listComment, setListComment] = useState<CommentsType[]>([]);
 
-    const [ isTag, setIsTag] = useState(
+    const [isTag, setIsTag] = useState(
         {
             rent: false,
             sale: false,
+            own: false,
         }
     )
-  
-console.log(listComment);
+
+    console.log(listComment);
 
 
     useEffect(() => {
@@ -53,7 +55,8 @@ console.log(listComment);
 
                 setIsTag({
                     rent: !!postsResponse.data.find(it => it.tag === REALTY.RENT),
-                    sale: !!postsResponse.data.find(it => it.tag === REALTY.SALE)
+                    sale: !!postsResponse.data.find(it => it.tag === REALTY.SALE),
+                    own: !!postsResponse.data.find(it => it.tag === REALTY.OWN_OBJECT),
                 })
                 setLoader(false);
             } catch (error: any) {
@@ -65,11 +68,26 @@ console.log(listComment);
         fetchData();
     }, []);
 
+    const changeTagPost = (id: string, tag: PostsTypeTag) => {
+        setLoader(true)
+        $api.post('/posts/change-tag-posts', { id, tag })
+            .then((r: AxiosResponse<{ message: string, currentListPost: PostsInterface[] }>) => {
+                setLoader(false)
+                setListPost(r.data.currentListPost)
+                alert(r.data.message)
+            })
+            .catch((error) => {
+                setLoader(false)
+                alert(error?.response?.data?.message || 'Error occurred delete-posts');
+            }
+            )
+    }
+
 
     const deletePost = (id: string) => {
         setLoader(true)
         $api.post('/posts/delete-posts', { id })
-            .then((r: AxiosResponse<{ message: string, currentListPost:PostsInterface[] }>) => {
+            .then((r: AxiosResponse<{ message: string, currentListPost: PostsInterface[] }>) => {
                 setLoader(false)
                 setListPost(r.data.currentListPost)
                 alert(r.data.message)
@@ -120,7 +138,8 @@ console.log(listComment);
             deletePost,
             addComment,
             deleteComment,
-            isTag
+            isTag,
+            changeTagPost
         }
     }>
         {children}

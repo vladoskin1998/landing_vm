@@ -7,5 +7,6 @@ export enum LANGUAGE {
 
 export enum REALTY {
     SALE='sale',
-    RENT='rent'
+    RENT='rent',
+    OWN_OBJECT='own',
 }

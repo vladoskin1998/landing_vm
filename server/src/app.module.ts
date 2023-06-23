@@ -10,8 +10,7 @@ import { join } from 'path';
 @Module({
   imports: [
     ConfigModule.forRoot({
-       envFilePath: 'ecosystem.config.js',
-
+      envFilePath: 'ecosystem.config.js',
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
@@ -20,9 +19,12 @@ import { join } from 'path';
         const uri = configService.get('MONGO_URI'); // Получение значения uri
         console.log(`MongoDB URI-------->: ${uri}`);
         return {
-        uri: "mongodb://vlados:Vlados1998@127.0.0.1:27017/bd_vm" || configService.get('MONGO_URI'),
-        dbName: 'bd_vm',
-      }},
+          uri:
+            'mongodb://vlados:Vlados1998@127.0.0.1:27017/bd_vm' ||
+            configService.get('MONGO_URI'),
+          dbName: 'bd_vm',
+        };
+      },
     }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'client'),
@@ -34,5 +36,5 @@ import { join } from 'path';
   ],
 })
 export class AppModule {
-   private logger = new Logger(AppModule.name);
+  private logger = new Logger(AppModule.name);
 }

@@ -16,7 +16,8 @@
     },
     "properties": {
         "sale":"Properties for Sale",
-        "rent":"Properties for Rent"
+        "rent":"Properties for Rent",
+        "own-object": "Личные обьекты"
     },
     "reviews": {
         "title": "Reviews",

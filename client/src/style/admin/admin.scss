@@ -70,8 +70,8 @@
     }
     &__logout {
         position: fixed;
-        top: 20px;
-        right: 4%;
+        top: 25px;
+        right: 90px;
         width: fit-content;
         color: $color_blue1;
         z-index: 7;
@@ -142,9 +142,13 @@
 
 .post__delete{
     position: relative;
-    &--delete{
+    &--button{
+        padding: 2px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
         position: absolute;
-        right: 8px;
+        left: 0;
         top: 8px;
         z-index: 10;
     }

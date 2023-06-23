@@ -12,36 +12,37 @@ import { useTranslation } from 'react-i18next'
 
 const Property = ({ postTag }: { postTag: PostsTypeTag }) => {
 
-  const { isAuth } = useContext(AuthContext)
-  const { listPost, isTag } = useContext(DataContext)
-  const { t } = useTranslation();
+    const { isAuth } = useContext(AuthContext)
+    const { listPost, isTag } = useContext(DataContext)
+    const { t } = useTranslation();
 
-  return (<>
-    {
-      isAuth &&
-      <div className='properties__add' style={{ padding: '10px' }}>
-        <ModalAdd postTag={postTag} />
-      </div>
-    }
-    {
-      (postTag === REALTY.RENT && isTag.rent)
-        || (postTag === REALTY.SALE && isTag.sale)
-        ? <div className="properties" id={firstUpperLetter(postTag)}>
-          <div className='wraper--content properties__wrap'>
-            <h4 className='route--name'>{t(`properties.${postTag}`)}</h4>
-            <div className="properties__list">
-              <PropertyList
-                postTag={postTag}
-                list={listPost.filter(it => it.tag === postTag)}
-              />
+    return (<>
+        {
+            isAuth &&
+            <div className='properties__add' style={{ padding: '10px' }}>
+                <ModalAdd postTag={postTag} />
             </div>
-          </div>
-          <div className='bg--content' style={{ background: REALTY.RENT === postTag ? "#1A1F19" : "inherit" }}></div>
-        </div>
-        : <></>
-    }
-  </>
-  )
+        }
+        {
+            (postTag === REALTY.RENT && isTag.rent)
+                || (postTag === REALTY.SALE && isTag.sale)
+                || (postTag === REALTY.OWN_OBJECT && isTag.own)
+                ? <div className="properties" id={firstUpperLetter(postTag)}>
+                    <div className='wraper--content properties__wrap'>
+                        <h4 className='route--name'>{t(`properties.${postTag}`)}</h4>
+                        <div className="properties__list">
+                            <PropertyList
+                                postTag={postTag}
+                                list={listPost.filter(it => it.tag === postTag)}
+                            />
+                        </div>
+                    </div>
+                    <div className='bg--content' style={{ background: REALTY.RENT === postTag ? "#1A1F19" : "inherit" }}></div>
+                </div>
+                : <></>
+        }
+    </>
+    )
 }
 
 export default Property

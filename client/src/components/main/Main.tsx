@@ -8,17 +8,17 @@ import { REALTY } from '../../types/enum'
 
 const Main = () => {
 
-  return (
-    <div className='main' >
-      <Header />
-      <About />
-      <Services />
-      <Property postTag={REALTY.SALE} />
-      <Property postTag={REALTY.RENT} />
-      <Reviews />
-      <Footer />
-    </div>
-  )
+    return (
+        <div className='main' >
+            <Header />
+            <About />
+            <Services />
+            <Property postTag={REALTY.SALE} />
+            <Property postTag={REALTY.RENT} />
+            <Reviews />
+            <Footer />
+        </div>
+    )
 }
 
 export default Main

@@ -1,6 +1,6 @@
 import { REALTY, LANGUAGE} from "./enum"
 
-export type PostsTypeTag = REALTY.RENT | REALTY.SALE
+export type PostsTypeTag = REALTY.RENT | REALTY.SALE | REALTY.OWN_OBJECT
 
 export type LanguageType = LANGUAGE.EN | LANGUAGE.BG | LANGUAGE.RO | LANGUAGE.RU
 

@@ -18,97 +18,95 @@ import { useTranslation } from "react-i18next";
 
 const SliderPhoto = ({ postTag }: { postTag: PostsTypeTag }) => {
 
-  const navigate = useNavigate()
+    const navigate = useNavigate()
 
-  const { setId } = useParams()
-  const [post, setPost] = useState<PostsInterface | undefined>()
-  const [moreButton, setMoreButton] = useState(false)
+    const { setId } = useParams()
+    const [post, setPost] = useState<PostsInterface | undefined>()
+    const [moreButton, setMoreButton] = useState(false)
 
-  const refSlick = useRef<Slider>(null);
-  const [count, setCount] = useState(1)
-  const { t } = useTranslation();
+    const refSlick = useRef<Slider>(null);
+    const [count, setCount] = useState(1)
+    const { t } = useTranslation();
 
-  useEffect(() => {
-    $api.post("/posts/get-one-post", { _id: setId })
-      .then(
-        (r: AxiosResponse<PostsInterface>): void => {
-          setPost({ ...r.data, description: r.data.description || '' })
-        }
-      )
-      .catch()
-  }, [])
+    useEffect(() => {
+        $api.post("/posts/get-one-post", { _id: setId })
+            .then(
+                (r: AxiosResponse<PostsInterface>): void => {
+                    setPost({ ...r.data, description: r.data.description || '' })
+                }
+            )
+            .catch()
+    }, [])
 
-  let settings = {
-    arrows: false,
-    dots: false,
-    infinite: false,
-    speed: 500,
-    lazyLoad: 'ondemand' as LazyLoadTypes,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    adaptiveHeight: true,
-    afterChange: (c: number) => setCount(c + 1)
+    let settings = {
+        arrows: false,
+        dots: false,
+        infinite: false,
+        speed: 500,
+        lazyLoad: 'ondemand' as LazyLoadTypes,
+        slidesToShow: 1,
+        slidesToScroll: 1,
+        adaptiveHeight: true,
+        afterChange: (c: number) => setCount(c + 1)
 
-  };
+    };
 
-  return (
-    <div className="media">
-      <div className="media__nav">
-        <div className="media__nav-slider">
-          <Logo />
-          <div> {count}/{(post?.images?.length || 0)}</div>
+    return (
+        <div className="media">
+            <div className="media__nav">
+                <div className="media__nav-slider">
+                    <Logo />
+                    <div> {count}/{(post?.images?.length || 0)}</div>
+                </div>
+                <div className="media__nav-text">
+                    <h5>{t(`properties.${postTag}`)}</h5>
+                    <ButtonClose onClick={() => navigate(-1)} />
+                </div>
+            </div>
+            <div className="media__wrap_content">
+                <div className="media__slider">
+                    <Slider {...settings} ref={refSlick}>
+                        {
+                            post?.images.map((it, index) => <img src={`${HREF}uploads/${it}`} key={index} className="media__item-image" />)
+                        }
+                    </Slider>
+                    <div className="media__slider-nav">
+                        <button onClick={() => refSlick?.current?.slickPrev()}>
+                            <ShevronsLeft />
+                        </button>
+                        <button onClick={() => refSlick?.current?.slickNext()}>
+                            <ShevronsRight />
+                        </button>
+                    </div>
+                </div>
+
+                <div className="media__info">
+                    <h6>{t('slide.area')}: {post?.area}</h6>
+                    <h6>{t('slide.price')}: {post?.price}</h6>
+                    <h6>{t('slide.city')}: {post?.district}, {post?.city}</h6>
+                    {
+                        post?.additionalFields?.length
+                            ? JSON.parse(post?.additionalFields).map((it: AdditionalFieldType, index: number) =>
+                                <h6 key={index}>{it.label}: {it.value}</h6>)
+                            : <></>
+                    }
+                    <p className="media__info-desc">
+                        {moreButton
+                            ? post?.description
+                            : post?.description?.slice(0, 200) + ((post?.description.length || 0) as number > 200 ? "..." : '')}
+                    </p>
+                    {
+                        (moreButton || (post?.description.length || 0) as number < 200)
+                            ? <></>
+                            : <div className="media__info-more" onClick={() => setMoreButton(true)}>
+                                <ButtonMore />
+                            </div>
+                    }
+                    <HeaderContact />
+                </div>
+            </div>
         </div>
-        <div className="media__nav-text">
-          <h5>{t(`properties.${postTag}`)}</h5>
-          <ButtonClose onClick={() => navigate(-1)} />
-        </div>
-      </div>
-      <div className="media__wrap_content">
-        <div className="media__slider">
-          <Slider {...settings} ref={refSlick}>
-            {
-              post?.images.map((it, index) => <img src={`${HREF}uploads/${it}`} key={index} className="media__item-image"/>)
-            }
-          </Slider>
-          <div className="media__slider-nav">
-            <button onClick={() => refSlick?.current?.slickPrev()}>
-              <ShevronsLeft />
-            </button>
-            <button onClick={() => refSlick?.current?.slickNext()}>
-              <ShevronsRight />
-            </button>
-          </div>
-        </div>
-
-        <div className="media__info">
-          <h6>{t('slide.area')}: {post?.area}</h6>
-          <h6>{t('slide.price')}: {post?.price}</h6>
-          <h6>{t('slide.city')}: {post?.district}, {post?.city}</h6>
-          {
-            post?.additionalFields?.length
-              ? JSON.parse(post?.additionalFields).map((it: AdditionalFieldType, index: number) =>
-                <h6 key={index}>{it.label}: {it.value}</h6>)
-              : <></>
-          }
-          <p className="media__info-desc">
-            {moreButton
-              ? post?.description
-              : post?.description?.slice(0, 200) + ((post?.description.length || 0) as number > 200 ? "..." : '')}
-          </p>
-          {
-            (moreButton || (post?.description.length || 0) as number < 200)
-              ? <></>
-              : <div className="media__info-more" onClick={() => setMoreButton(true)}>
-                <ButtonMore />
-              </div>
-          }
-          <HeaderContact />
-        </div>
-      </div>
-
-    </div>
-
-  )
+    )
 }
 
 export default SliderPhoto
