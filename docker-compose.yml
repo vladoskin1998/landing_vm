@@ -6,27 +6,27 @@ services:
             dockerfile: Dockerfile
         ports:
             - "5001:5001"
-        depends_on:
-            - mongodb
+        # depends_on:
+        #     - mongodb
         volumes:
             - ./server/uploads:/usr/src/app/uploads
             - ./server/client:/usr/src/app/client
         environment:
             - JWT_SECRET=VERONIKA_+1234+_MYRONOVA
-            - MONGO_URI=mongodb://vlados:Vlados1998@mongodb:27017/bd_vm
+            - MONGO_URI=mongodb://vlados:Vlados1998@127.0.0.1:27017/bd_vm
         networks:
             - mynetwork
         restart: always
 
-    mongodb:
-        image: mongo:latest
-        volumes:
-            - ./data:/data/db
-        ports:
-            - "27017:27017"
-        networks:
-            - mynetwork
-        restart: always
+    # mongodb:
+    #     image: mongo:latest
+    #     volumes:
+    #         - ./data:/data/db
+    #     ports:
+    #         - "27017:27017"
+    #     networks:
+    #         - mynetwork
+    #     restart: always
 
 networks:
     mynetwork:
