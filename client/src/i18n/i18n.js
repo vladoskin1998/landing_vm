@@ -4,8 +4,8 @@ import { initReactI18next } from 'react-i18next';
 i18n
   .use(initReactI18next)
   .init({
-    lng: 'en', // Язык по умолчанию
-    fallbackLng: 'en', // Язык, который будет использован, если выбранный язык не найден
+    lng: 'bg', // Язык по умолчанию
+    fallbackLng: 'bg', // Язык, который будет использован, если выбранный язык не найден
     resources: {
       en: {
         translation: require('../language/en.json'),

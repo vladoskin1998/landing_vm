@@ -1,6 +1,6 @@
 import { LANGUAGE } from "../types/enum"
 
-export const LANGUAGE_LIST = [LANGUAGE.EN, LANGUAGE.BG, LANGUAGE.RO, LANGUAGE.RU]
+export const LANGUAGE_LIST = [ LANGUAGE.BG, LANGUAGE.EN,LANGUAGE.RO, LANGUAGE.RU]
 
 export const MENU_LIST = [
     "Home",

@@ -1,0 +1,13 @@
+exit
+db.createUser({ user: 'vlados', pwd: 'Vlados1998', roles: [ { role: 'readWrite', db: 'bd_vm' }] })
+db.authentications.find()
+db.authentications.insertOne({ login: 'Veronika', password: '$2b$05$NNuF7Vx225bP8cqR6zfKCe2mlp.ZVejHZy3BS2QdzBv8K12BjNuRS', token: '', lastEntered: new Date('2023-06-23T11:00:14.538Z') });
+db.authentications.find()
+show collections
+use bd_vm
+show dbs
+show collections
+db
+showdb
+showwdb
+show

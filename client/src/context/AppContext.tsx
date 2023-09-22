@@ -15,7 +15,7 @@ const AppContext = createContext<{
     loader: false,
     setLoader() { },
     changeLanguage() { },
-    language: LANGUAGE.EN
+    language: LANGUAGE.BG
 });
 
 const AppContextProvider = ({ children, refApp }: { children: ReactNode; refApp: RefObject<HTMLDivElement> }) => {
@@ -23,7 +23,7 @@ const AppContextProvider = ({ children, refApp }: { children: ReactNode; refApp:
     const { i18n } = useTranslation();
     const [device, setDevice] = useState<DeviceType>('pc');
     const [loader, setLoader] = useState(false)
-    const [language, setLanguage] = useState<LanguageType>(LANGUAGE.EN)
+    const [language, setLanguage] = useState<LanguageType>(LANGUAGE.BG)
 
     useEffect(() => {
         const handleResize = () => {
@@ -46,18 +46,7 @@ const AppContextProvider = ({ children, refApp }: { children: ReactNode; refApp:
         };
     }, [refApp?.current?.offsetWidth]);
 
-    useEffect(() => {
-        
 
-        const deviceLanguage = navigator.language.slice(0,2) as LanguageType
-        console.log(deviceLanguage.slice(0,2));
-        
-
-        if (LANGUAGE_LIST.includes(deviceLanguage)) {
-            changeLanguage(deviceLanguage)
-        }
-
-    }, [])
 
 
     const changeLanguage = (l: LanguageType) => {

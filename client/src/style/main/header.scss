@@ -128,10 +128,8 @@
             column-gap: 20px;
             & button {
                 width: 100%;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                padding: 15px 82px;
+                text-align: center;
+                padding: 15px 0px;
                 border-radius: 50px;
                 border: 1px solid $color_orange1;
                 &:last-child {
