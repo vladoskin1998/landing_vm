@@ -33,11 +33,15 @@ AppModule = AppModule_1 = __decorate([
                 useFactory: async (configService) => {
                     const uri = configService.get('MONGO_URI');
                     console.log(`MongoDB URI-------->: ${uri}`);
-                    return {
-                        uri: 'mongodb://vlados:Vlados1998@127.0.0.1:27017/bd_vm' ||
-                            configService.get('MONGO_URI'),
-                        dbName: 'bd_vm',
-                    };
+                    try {
+                        return {
+                            uri: 'mongodb://vlados:Vlados1998@127.0.0.1:27017/bd_vm',
+                            dbName: 'bd_vm',
+                        };
+                    }
+                    catch (error) {
+                        console.log(error);
+                    }
                 },
             }),
             serve_static_1.ServeStaticModule.forRoot({
