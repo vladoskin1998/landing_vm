@@ -9,9 +9,7 @@ import { join } from 'path';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      envFilePath: 'ecosystem.config.js',
-    }),
+    ConfigModule.forRoot(),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -21,8 +19,8 @@ import { join } from 'path';
         try {
           return {
             uri:
-              'mongodb://vlados:Vlados1998@127.0.0.1:27017/bd_vm' ,
-             // || configService.get('MONGO_URI'),
+              'mongodb://vlados:Vlados1998@127.0.0.1:27017/bd_vm' 
+              || configService.get('MONGO_URI'),
             dbName: 'bd_vm',
           };
         } catch (error) {
