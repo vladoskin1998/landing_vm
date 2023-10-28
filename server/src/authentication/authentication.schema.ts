@@ -19,3 +19,6 @@ export class Authentication {
 }
 
 export const AuthenticationSchema = SchemaFactory.createForClass(Authentication);
+
+
+// .insertOne({login: 'Veronika',password: '$2a$12$6EgNB/y5sqPvsDjRav79zezQaAEQgSO.2Xfmxu6eSq9.XG9rMZivK',token: '',lastEntered: new Date(), })
